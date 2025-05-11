@@ -18,7 +18,7 @@ class MyApp extends StatelessWidget {
         scaffoldBackgroundColor: Color(0xFF223A54),
         fontFamily: 'Roboto',
       ),
-      home: const LoginPage(),
+      home: LoginPage(),
     );
   }
 }
