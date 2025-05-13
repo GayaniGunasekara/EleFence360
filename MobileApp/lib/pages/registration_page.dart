@@ -1,7 +1,41 @@
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 
-class RegistrationPage extends StatelessWidget {
+class RegistrationPage extends StatefulWidget {
   const RegistrationPage({super.key});
+
+  @override
+  State<RegistrationPage> createState() => _RegistrationPageState();
+}
+
+class _RegistrationPageState extends State<RegistrationPage> {
+  // Controllers for each field
+  final TextEditingController nameController = TextEditingController();
+  final TextEditingController phoneController = TextEditingController();
+  final TextEditingController nicController = TextEditingController();
+  final TextEditingController addressController = TextEditingController();
+
+  // Reference to the database
+  final DatabaseReference dbRef = FirebaseDatabase.instance.ref().child(
+    'users',
+  );
+
+  // Save data function
+  Future<void> saveUserData() async {
+    String key = dbRef.push().key!;
+    await dbRef.child(key).set({
+      'name': nameController.text.trim(),
+      'phone': phoneController.text.trim(),
+      'nic': nicController.text.trim(),
+      'address': addressController.text.trim(),
+    });
+    // Optionally, show a success message or navigate
+    
+    ScaffoldMessenger.of(
+      // ignore: use_build_context_synchronously
+      context,
+    ).showSnackBar(SnackBar(content: Text('Registration Successful!')));
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -26,6 +60,7 @@ class RegistrationPage extends StatelessWidget {
                 width: 250,
                 height: 400,
                 decoration: BoxDecoration(
+                  // ignore: deprecated_member_use
                   color: Color(0xFF4E8BD4).withOpacity(0.5),
                   borderRadius: BorderRadius.circular(15),
                 ),
@@ -34,9 +69,9 @@ class RegistrationPage extends StatelessWidget {
                   children: [
                     SizedBox(height: 10),
                     Padding(
-                      padding: const EdgeInsets.only(right: 115),
+                      padding: const EdgeInsets.only(right: 170),
                       child: Text(
-                        'Name(Username)',
+                        'Name',
                         style: TextStyle(
                           fontSize: 10,
                           fontWeight: FontWeight.bold,
@@ -52,6 +87,7 @@ class RegistrationPage extends StatelessWidget {
                         borderRadius: BorderRadius.circular(5),
                       ),
                       child: TextField(
+                        controller: nameController,
                         decoration: InputDecoration(
                           hintText: 'Enter your name',
                           hintStyle: TextStyle(fontSize: 15),
@@ -84,6 +120,7 @@ class RegistrationPage extends StatelessWidget {
                         borderRadius: BorderRadius.circular(5),
                       ),
                       child: TextField(
+                        controller: phoneController,
                         decoration: InputDecoration(
                           hintText: 'Enter your phone number',
                           hintStyle: TextStyle(fontSize: 15),
@@ -116,6 +153,7 @@ class RegistrationPage extends StatelessWidget {
                         borderRadius: BorderRadius.circular(5),
                       ),
                       child: TextField(
+                        controller: nicController,
                         decoration: InputDecoration(
                           hintText: 'Enter National Id number',
                           hintStyle: TextStyle(fontSize: 15),
@@ -148,6 +186,7 @@ class RegistrationPage extends StatelessWidget {
                         borderRadius: BorderRadius.circular(5),
                       ),
                       child: TextField(
+                        controller: addressController,
                         decoration: InputDecoration(
                           hintText: 'Enter your address',
                           hintStyle: TextStyle(fontSize: 15),
@@ -162,8 +201,9 @@ class RegistrationPage extends StatelessWidget {
                     ),
                     SizedBox(height: 15),
                     ElevatedButton(
-                      onPressed: () {
-                        // Add your login logic here
+                      onPressed: () async {
+                        await saveUserData();
+                         Navigator.of(context).pop(); 
                       },
                       style: ElevatedButton.styleFrom(
                         minimumSize: Size(150, 30),
