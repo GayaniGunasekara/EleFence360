@@ -4,6 +4,22 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'registration_page.dart';
 
+String? validateNIC(String? value) {
+  if (value == null || value.isEmpty) return 'NIC is required';
+  final pattern = r'^(?:\d{12}|[0-9]{9}[vVxX])$';
+  final regExp = RegExp(pattern);
+  if (!regExp.hasMatch(value)) return 'Enter a valid NIC';
+  return null;
+}
+
+String? validateMobile(String? value) {
+  if (value == null || value.isEmpty) return 'Mobile number is required';
+  if (value.length != 10) return 'Mobile number must be 10 digits';
+  if (!RegExp(r'^[0-9]{10}$').hasMatch(value)) return 'Enter a valid mobile number';
+    
+  return null;
+}
+
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
 
@@ -14,6 +30,8 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   final TextEditingController nicController = TextEditingController();
   final TextEditingController phoneController = TextEditingController();
+
+  final _formKey = GlobalKey<FormState>();
 
   Future<void> loginUser() async {
     final DatabaseReference dbRef = FirebaseDatabase.instance.ref().child(
@@ -32,11 +50,11 @@ class _LoginPageState extends State<LoginPage> {
       });
     }
 
+    if (!mounted) return;
     if (found) {
       ScaffoldMessenger.of(
         context,
       ).showSnackBar(SnackBar(content: Text('Login Successful!')));
-      // TODO: Navigate to your main/home page
     } else {
       ScaffoldMessenger.of(
         context,
@@ -65,134 +83,151 @@ class _LoginPageState extends State<LoginPage> {
         color: Color(0xFF4E8BD4).withOpacity(0.5),
         borderRadius: BorderRadius.circular(15),
       ),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          Text(
-            'Login',
-            style: TextStyle(
-              fontSize: 20,
-              fontWeight: FontWeight.bold,
-              color: Color(0xFFFFFFFF),
-              height: 1.0,
-            ),
-          ),
-          SizedBox(height: 20),
-          Padding(
-            padding: const EdgeInsets.only(right: 183),
-            child: Text(
-              'NIC',
+      child: Form(
+        key: _formKey,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Text(
+              'Login',
               style: TextStyle(
-                fontSize: 10,
+                fontSize: 20,
                 fontWeight: FontWeight.bold,
                 color: Color(0xFFFFFFFF),
+                height: 1.0,
               ),
             ),
-          ),
-          Container(
-            width: 200,
-            height: 35,
-            decoration: BoxDecoration(
-              color: Color(0xFFFFFFFF),
-              borderRadius: BorderRadius.circular(05),
-            ),
-            child: TextField(
-              controller: nicController,
-              decoration: InputDecoration(
-                hintText: 'Enter NIC number',
-                filled: true,
-                fillColor: Colors.white,
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(5),
-                  borderSide: BorderSide.none,
+            SizedBox(height: 20),
+            Padding(
+              padding: const EdgeInsets.only(right: 183),
+              child: Text(
+                'NIC',
+                style: TextStyle(
+                  fontSize: 10,
+                  fontWeight: FontWeight.bold,
+                  color: Color(0xFFFFFFFF),
                 ),
-                contentPadding: EdgeInsets.symmetric(horizontal: 10),
               ),
             ),
-          ),
-          SizedBox(height: 10),
-          Padding(
-            padding: const EdgeInsets.only(right: 129),
-            child: Text(
-              'Mobile Number',
-              style: TextStyle(
-                fontSize: 10,
-                fontWeight: FontWeight.bold,
+            Container(
+              width: 200,
+              height: 35,
+              decoration: BoxDecoration(
                 color: Color(0xFFFFFFFF),
+                borderRadius: BorderRadius.circular(05),
               ),
-            ),
-          ),
-          Container(
-            width: 200,
-            height: 35,
-            decoration: BoxDecoration(
-              color: Color(0xFFFFFFFF),
-              borderRadius: BorderRadius.circular(05),
-            ),
-            child: TextField(
-              controller: phoneController,
-              decoration: InputDecoration(
-                hintText: 'Enter mobile number',
-                filled: true,
-                fillColor: Colors.white,
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(5),
-                  borderSide: BorderSide.none,
-                ),
-                contentPadding: EdgeInsets.symmetric(horizontal: 10),
-              ),
-            ),
-          ),
-          SizedBox(height: 10),
-          ElevatedButton(
-            onPressed: () async {
-              await loginUser();
-            },
-            style: ElevatedButton.styleFrom(
-              minimumSize: Size(120, 30),
-              padding: EdgeInsets.zero,
-              backgroundColor: Colors.black,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(5),
-              ),
-            ),
-            child: Text('Login', style: TextStyle(color: Colors.white)),
-          ),
-
-          SizedBox(height: 1),
-          RichText(
-            text: TextSpan(
-              text: "Don't have an account? ",
-              style: TextStyle(
-                fontSize: 10,
-                fontWeight: FontWeight.bold,
-                color: Colors.white,
-              ),
-              children: [
-                TextSpan(
-                  text: ' Register!',
-                  style: TextStyle(
-                    fontSize: 10,
-                    fontWeight: FontWeight.bold,
-                    color: const Color(0xFF000000), // Optional: to highlight
-                    decoration: TextDecoration.underline,
+              child: TextFormField(
+                controller: nicController,
+                validator: validateNIC,
+                decoration: InputDecoration(
+                  hintText: 'Enter NIC number',
+                  filled: true,
+                  fillColor: Colors.white,
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(5),
+                    borderSide: BorderSide.none,
                   ),
-                  recognizer:
-                      TapGestureRecognizer()
-                        ..onTap = () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => RegistrationPage(),
-                            ),
-                          );
-                        },
+                  contentPadding: EdgeInsets.symmetric(horizontal: 10),
                 ),
-              ],
+              ),
             ),
-          ),
-        ],
+            SizedBox(height: 10),
+            Padding(
+              padding: const EdgeInsets.only(right: 129),
+              child: Text(
+                'Mobile Number',
+                style: TextStyle(
+                  fontSize: 10,
+                  fontWeight: FontWeight.bold,
+                  color: Color(0xFFFFFFFF),
+                ),
+              ),
+            ),
+            Container(
+              width: 200,
+              height: 35,
+              decoration: BoxDecoration(
+                color: Color(0xFFFFFFFF),
+                borderRadius: BorderRadius.circular(05),
+              ),
+              child: TextFormField(
+                controller: phoneController,
+                validator: validateMobile,
+                decoration: InputDecoration(
+                  hintText: 'Enter mobile number',
+                  filled: true,
+                  fillColor: Colors.white,
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(5),
+                    borderSide: BorderSide.none,
+                  ),
+                  contentPadding: EdgeInsets.symmetric(horizontal: 10),
+                ),
+              ),
+            ),
+            SizedBox(height: 10),
+            ElevatedButton(
+              onPressed: () async {
+                if (_formKey.currentState!.validate()) {
+                  await loginUser();
+                }
+              },
+              style: ElevatedButton.styleFrom(
+                minimumSize: Size(120, 30),
+                padding: EdgeInsets.zero,
+                backgroundColor: Colors.black,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(5),
+                ),
+              ),
+              child: Text('Login', style: TextStyle(color: Colors.white)),
+            ),
+
+            SizedBox(height: 1),
+            RichText(
+              text: TextSpan(
+                text: "Don't have an account? ",
+                style: TextStyle(
+                  fontSize: 10,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white,
+                ),
+                children: [
+                  TextSpan(
+                    text: ' Register!',
+                    style: TextStyle(
+                      fontSize: 10,
+                      fontWeight: FontWeight.bold,
+                      color: const Color(0xFF000000), // Optional: to highlight
+                      decoration: TextDecoration.underline,
+                    ),
+                    recognizer:
+                        TapGestureRecognizer()
+                          ..onTap = () async {
+                            final result = await Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => RegistrationPage(),
+                              ),
+                            );
+
+                            if (result == 'success') {
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                SnackBar(
+                                  content: Text(
+                                    'Registration successful! Please login.',
+                                  ),
+                                ),
+                              );
+                            }
+                          },
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
