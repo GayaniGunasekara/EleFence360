@@ -12,8 +12,10 @@ String? validateNIC(String? value) {
 String? validateMobile(String? value) {
   if (value == null || value.isEmpty) return 'Mobile number is required';
   if (value.length != 10) return 'Mobile number must be 10 digits';
-  if (!RegExp(r'^[0-9]{10}$').hasMatch(value)) return 'Enter a valid mobile number';
-    
+  if (!RegExp(r'^[0-9]{10}$').hasMatch(value)) {
+    return 'Enter a valid mobile number';
+  }
+
   return null;
 }
 
@@ -38,30 +40,68 @@ class _RegistrationPageState extends State<RegistrationPage> {
 
   final _formKey = GlobalKey<FormState>();
 
-  // Save data function
-  Future<void> saveUserData() async {
-    String key = dbRef.push().key!;
-    await dbRef.child(key).set({
-      'name': nameController.text.trim(),
-      'phone': phoneController.text.trim(),
-      'nic': nicController.text.trim(),
-      'address': addressController.text.trim(),
-    });
-    // Optionally, show a success message or navigate
+  Future<void> saveUserData(BuildContext context) async {
+    try {
+      if (_formKey.currentState!.validate()) {
+        // Check if user exists already
+        bool exists = await userExists(
+          nicController.text.trim(),
+          phoneController.text.trim(),
+        );
 
-    ScaffoldMessenger.of(
-      // ignore: use_build_context_synchronously
-      context,
-    ).showSnackBar(SnackBar(content: Text('Registration Successful!')));
+        if (exists) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(content: Text('NIC or Phone already registered')),
+          );
+          return;
+        }
+
+        // Save to Firebase
+        final userRef = FirebaseDatabase.instance.ref('users').push();
+        await userRef.set({
+          'name': nameController.text.trim(),
+          'nic': nicController.text.trim(),
+          'phone': phoneController.text.trim(),
+          'address': addressController.text.trim(),
+          'timestamp': ServerValue.timestamp,
+        });
+
+        // Clear form
+        nameController.clear();
+        nicController.clear();
+        phoneController.clear();
+        addressController.clear();
+
+        ScaffoldMessenger.of(
+          context,
+        ).showSnackBar(SnackBar(content: Text('Registration Successful!')));
+      }
+    } catch (e) {
+      print("Error: $e");
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(SnackBar(content: Text('Error: ${e.toString()}')));
+    }
   }
 
   Future<bool> userExists(String nic, String phone) async {
-    final snapshot = await dbRef.orderByChild('nic').equalTo(nic).once();
-    if (snapshot.snapshot.exists) return true;
+    final snapshot = await FirebaseDatabase.instance.ref('users').get();
+    if (!snapshot.exists) return false;
 
-    final phoneSnapshot =
-        await dbRef.orderByChild('phone').equalTo(phone).once();
-    return phoneSnapshot.snapshot.exists;
+    final users = snapshot.value as Map<dynamic, dynamic>;
+
+    for (final userEntry in users.entries) {
+      final userData = Map<String, dynamic>.from(userEntry.value);
+
+      final existingNIC = userData['nic']?.toString().trim();
+      final existingPhone = userData['phone']?.toString().trim();
+
+      if (existingNIC == nic || existingPhone == phone) {
+        return true;
+      }
+    }
+
+    return false;
   }
 
   @override
@@ -261,17 +301,13 @@ class _RegistrationPageState extends State<RegistrationPage> {
                             if (exists) {
                               ScaffoldMessenger.of(context).showSnackBar(
                                 SnackBar(
-                                  content: Text(
-                                    'NIC or Phone already registered',
-                                  ),
+                                  content: Text('User already exists!'),
+                                  backgroundColor: Colors.red,
                                 ),
                               );
-                              return;
+                            } else {
+                              await saveUserData(context);
                             }
-
-                            await saveUserData();
-                            if (!mounted) return;
-                            Navigator.of(context).pop('success');
                           }
                         },
 
