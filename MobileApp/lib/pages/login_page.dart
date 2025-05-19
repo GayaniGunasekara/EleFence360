@@ -15,8 +15,9 @@ String? validateNIC(String? value) {
 String? validateMobile(String? value) {
   if (value == null || value.isEmpty) return 'Mobile number is required';
   if (value.length != 10) return 'Mobile number must be 10 digits';
-  if (!RegExp(r'^[0-9]{10}$').hasMatch(value)) return 'Enter a valid mobile number';
-    
+  if (!RegExp(r'^[0-9]{10}$').hasMatch(value)) {
+    return 'Enter a valid mobile number';
+  }
   return null;
 }
 
@@ -32,7 +33,6 @@ class _LoginPageState extends State<LoginPage> {
   final TextEditingController phoneController = TextEditingController();
 
   final _formKey = GlobalKey<FormState>();
-
 
   Future<void> loginUser() async {
     final DatabaseReference dbRef = FirebaseDatabase.instance.ref().child(
@@ -65,22 +65,36 @@ class _LoginPageState extends State<LoginPage> {
 
   @override
   Widget build(BuildContext context) {
+    final media = MediaQuery.of(context);
+    final width = media.size.width;
+    final height = media.size.height;
+
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
-          children: [_welcomeText(), _loginBox(context)],
+          children: [
+            _welcomeText(width, height),
+            SizedBox(height: height * 0.03),
+            _loginBox(context, width, height),
+          ],
         ),
       ),
     );
   }
 
-  Container _loginBox(BuildContext context) {
+  Container _loginBox(BuildContext context, double width, double height) {
+    // Responsive width and height
+    final boxWidth = width < 350 ? width * 0.9 : 300.0;
+    final boxHeight = height < 600 ? height * 0.45 : 340.0;
+    final fieldWidth = boxWidth * 0.8;
+    final fieldHeight = boxHeight * 0.13;
+
+
     return Container(
-      width: 250,
-      height: 260,
+      width: boxWidth,
+      height: boxHeight,
       decoration: BoxDecoration(
-        // ignore: deprecated_member_use
         color: Color(0xFF4E8BD4).withOpacity(0.5),
         borderRadius: BorderRadius.circular(15),
       ),
@@ -93,30 +107,30 @@ class _LoginPageState extends State<LoginPage> {
             Text(
               'Login',
               style: TextStyle(
-                fontSize: 20,
+                fontSize: width * 0.075,
                 fontWeight: FontWeight.bold,
                 color: Color(0xFFFFFFFF),
-                height: 1.0,
+                height: width < 350 ? 0.8 : 0.7,
               ),
             ),
-            SizedBox(height: 20),
+            SizedBox(height: boxHeight * 0.07),
             Padding(
-              padding: const EdgeInsets.only(right: 183),
+              padding: EdgeInsets.only(right: fieldWidth * 0.9),
               child: Text(
                 'NIC',
                 style: TextStyle(
-                  fontSize: 10,
+                  fontSize: 13,
                   fontWeight: FontWeight.bold,
                   color: Color(0xFFFFFFFF),
                 ),
               ),
             ),
             Container(
-              width: 200,
-              height: 35,
+              width: fieldWidth,
+              height: fieldHeight,
               decoration: BoxDecoration(
                 color: Color(0xFFFFFFFF),
-                borderRadius: BorderRadius.circular(05),
+                borderRadius: BorderRadius.circular(5),
               ),
               child: TextFormField(
                 controller: nicController,
@@ -133,24 +147,24 @@ class _LoginPageState extends State<LoginPage> {
                 ),
               ),
             ),
-            SizedBox(height: 10),
+            SizedBox(height: 12),
             Padding(
-              padding: const EdgeInsets.only(right: 129),
+              padding: EdgeInsets.only(right: fieldWidth * 0.6),
               child: Text(
                 'Mobile Number',
                 style: TextStyle(
-                  fontSize: 10,
+                  fontSize: 13,
                   fontWeight: FontWeight.bold,
                   color: Color(0xFFFFFFFF),
                 ),
               ),
             ),
             Container(
-              width: 200,
-              height: 35,
+              width: fieldWidth,
+              height: fieldHeight,
               decoration: BoxDecoration(
                 color: Color(0xFFFFFFFF),
-                borderRadius: BorderRadius.circular(05),
+                borderRadius: BorderRadius.circular(5),
               ),
               child: TextFormField(
                 controller: phoneController,
@@ -175,7 +189,7 @@ class _LoginPageState extends State<LoginPage> {
                 }
               },
               style: ElevatedButton.styleFrom(
-                minimumSize: Size(120, 30),
+                minimumSize: Size(fieldWidth * 0.6, 30),
                 padding: EdgeInsets.zero,
                 backgroundColor: Colors.black,
                 shape: RoundedRectangleBorder(
@@ -184,13 +198,12 @@ class _LoginPageState extends State<LoginPage> {
               ),
               child: Text('Login', style: TextStyle(color: Colors.white)),
             ),
-
             SizedBox(height: 1),
             RichText(
               text: TextSpan(
                 text: "Don't have an account? ",
                 style: TextStyle(
-                  fontSize: 10,
+                    fontSize: width * 0.031,
                   fontWeight: FontWeight.bold,
                   color: Colors.white,
                 ),
@@ -198,9 +211,9 @@ class _LoginPageState extends State<LoginPage> {
                   TextSpan(
                     text: ' Register!',
                     style: TextStyle(
-                      fontSize: 10,
+                      fontSize: width * 0.031,
                       fontWeight: FontWeight.bold,
-                      color: const Color(0xFF000000), // Optional: to highlight
+                      color: const Color(0xFF000000),
                       decoration: TextDecoration.underline,
                     ),
                     recognizer:
@@ -212,7 +225,6 @@ class _LoginPageState extends State<LoginPage> {
                                 builder: (context) => RegistrationPage(),
                               ),
                             );
-
                             if (result == 'success') {
                               ScaffoldMessenger.of(context).showSnackBar(
                                 SnackBar(
@@ -233,35 +245,39 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 
-  Stack _welcomeText() {
+  Stack _welcomeText(double width, double height) {
+    final bgHeight = height * 0.42;
     return Stack(
       children: [
         SizedBox(
           width: double.infinity,
-          height: 300,
+          height: bgHeight,
           child: Align(
             alignment: Alignment.topCenter,
             child: SvgPicture.asset('assets/bg_picture.svg', fit: BoxFit.fill),
           ),
         ),
         Padding(
-          padding: const EdgeInsets.only(top: 100, left: 20, right: 20),
+          padding: EdgeInsets.only(
+            top: bgHeight * 0.35,
+            left: width * 0.05,
+            right: width * 0.05,
+          ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
                 'WELCOME',
                 style: TextStyle(
-                  fontSize: 38,
+                  fontSize: width * 0.11,
                   fontWeight: FontWeight.bold,
                   color: Color(0xFFFFFFFF),
                 ),
               ),
-
               Text(
                 'to the EleGuardian!',
                 style: TextStyle(
-                  fontSize: 25,
+                  fontSize: width * 0.08,
                   fontWeight: FontWeight.bold,
                   color: Color(0xFFFFFFFF),
                   height: 1.0,
