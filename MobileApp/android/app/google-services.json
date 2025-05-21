@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "731082490510",
+    "firebase_url": "https://eleguardian-772d5-default-rtdb.firebaseio.com",
+    "project_id": "eleguardian-772d5",
+    "storage_bucket": "eleguardian-772d5.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:731082490510:android:1bbd507de3da1f37f6bfdf",
+        "android_client_info": {
+          "package_name": "com.example.capstoneproject_mobileapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDQkYnYMYAwNCLs3_aBdhPpu4zAYol9fyQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
