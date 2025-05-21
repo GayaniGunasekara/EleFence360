@@ -8,7 +8,9 @@ String? validateNIC(String? value) {
   if (value == null || value.isEmpty) return 'NIC is required';
   final pattern = r'^(?:\d{12}|[0-9]{9}[vVxX])$';
   final regExp = RegExp(pattern);
-  if (!regExp.hasMatch(value)) return 'Enter a valid NIC';
+  if (!regExp.hasMatch(value)) {
+    return 'Enter a valid NIC';
+  }
   return null;
 }
 
