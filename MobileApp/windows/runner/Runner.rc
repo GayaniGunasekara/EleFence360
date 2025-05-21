@@ -90,12 +90,16 @@ BEGIN
         BLOCK "040904e4"
         BEGIN
             VALUE "CompanyName", "com.example" "\0"
-            VALUE "FileDescription", "notification_interface" "\0"
+
+
+            VALUE "FileDescription", "capstoneproject_mobileapp" "\0"
             VALUE "FileVersion", VERSION_AS_STRING "\0"
-            VALUE "InternalName", "notification_interface" "\0"
+            VALUE "InternalName", "capstoneproject_mobileapp" "\0"
             VALUE "LegalCopyright", "Copyright (C) 2025 com.example. All rights reserved." "\0"
-            VALUE "OriginalFilename", "notification_interface.exe" "\0"
-            VALUE "ProductName", "notification_interface" "\0"
+            VALUE "OriginalFilename", "capstoneproject_mobileapp.exe" "\0"
+            VALUE "ProductName", "capstoneproject_mobileapp" "\0"
+
+
             VALUE "ProductVersion", VERSION_AS_STRING "\0"
         END
     END
