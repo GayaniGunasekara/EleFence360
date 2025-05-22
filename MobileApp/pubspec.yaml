@@ -1,14 +1,17 @@
 
+
 name: capstoneproject_mobileapp
 description: A health app with profile management.
 
 publish_to: "none"
 
 
+
 version: 1.0.0+1
 
 environment:
   sdk: ^3.7.2
+
 
 
 dependencies:
@@ -20,6 +23,12 @@ dependencies:
   flutter:
     sdk: flutter
   cupertino_icons: ^1.0.8
+
+  google_maps_flutter_web: ^0.5.4+1
+  google_maps_flutter: ^2.5.0
+  intl: ^0.19.0
+  google_fonts: ^6.1.0
+
   flutter_svg: ^2.1.0
   provider: ^6.0.3
 
@@ -34,11 +43,13 @@ dev_dependencies:
     sdk: flutter
 
 
+
 dev_dependencies:
   flutter_lints: ^5.0.0
 
 flutter:
   uses-material-design: true
+
 
   assets:
     - assets/

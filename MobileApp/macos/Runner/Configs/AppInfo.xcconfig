@@ -7,6 +7,7 @@
 // The application's name. By default this is also the title of the Flutter window.
 
 
+
 PRODUCT_NAME = capstoneproject_mobileapp
 
 // The application's bundle identifier

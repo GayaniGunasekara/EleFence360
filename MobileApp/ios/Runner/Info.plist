@@ -6,6 +6,7 @@
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleDisplayName</key>
 
+
 	<string>Capstoneproject Mobileapp</string>
 
 	<key>CFBundleExecutable</key>

@@ -92,7 +92,6 @@ BEGIN
             VALUE "CompanyName", "com.example" "\0"
 
 
-
             VALUE "FileDescription", "capstoneproject_mobileapp" "\0"
             VALUE "FileVersion", VERSION_AS_STRING "\0"
             VALUE "InternalName", "capstoneproject_mobileapp" "\0"
