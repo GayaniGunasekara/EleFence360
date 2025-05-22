@@ -1,3 +1,4 @@
+
 // This is a basic Flutter widget test.
 //
 // To perform an interaction with a widget in your test, use the WidgetTester
@@ -8,7 +9,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-import 'package:my_web_app/main.dart';
+
 
 void main() {
   testWidgets('Counter increments smoke test', (WidgetTester tester) async {
@@ -26,5 +27,20 @@ void main() {
     // Verify that our counter has incremented.
     expect(find.text('0'), findsNothing);
     expect(find.text('1'), findsOneWidget);
+
+
+import 'package:flutter_test/flutter_test.dart';
+import 'package:notification_interface/main.dart';
+
+void main() {
+  testWidgets('Notification titles are displayed', (WidgetTester tester) async {
+    await tester.pumpWidget(const MyApp());
+
+    expect(find.text('Elephants near the fence!'), findsOneWidget);
+    expect(find.text('Electricity issues in the fence.'), findsOneWidget);
+    expect(find.text('Fence Damages'), findsOneWidget);
+    expect(find.text('Other Emergencies'), findsOneWidget);
+
+
   });
 }
