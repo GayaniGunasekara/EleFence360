@@ -65,6 +65,7 @@
 		333000ED22D3DE5D00554162 /* Warnings.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Warnings.xcconfig; sourceTree = "<group>"; };
 		335BBD1A22A9A15E00E9071D /* GeneratedPluginRegistrant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeneratedPluginRegistrant.swift; sourceTree = "<group>"; };
 
+
 33CC10ED2044A3C60003C045 /* capstoneproject_mobileapp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "capstoneproject_mobileapp.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 
 
@@ -137,7 +138,6 @@
 
 
 				33CC10ED2044A3C60003C045 /* capstoneproject_mobileapp.app */,
-
 
 				331C80D5294CF71000263BE5 /* RunnerTests.xctest */,
 			);
@@ -227,7 +227,6 @@
 
 
 			productReference = 33CC10ED2044A3C60003C045 /* capstoneproject_mobileapp.app */;
-
 
 			productType = "com.apple.product-type.application";
 		};
@@ -396,7 +395,6 @@
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
 				MARKETING_VERSION = 1.0;
-        
 
 
 				PRODUCT_BUNDLE_IDENTIFIER = com.example.capstoneprojectMobileapp.RunnerTests;

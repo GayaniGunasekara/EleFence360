@@ -1,3 +1,4 @@
+
 name: capstoneproject_mobileapp
 description: A health app with profile management.
 
@@ -8,7 +9,6 @@ version: 1.0.0+1
 
 environment:
   sdk: ^3.7.2
-
 
 
 dependencies:
@@ -28,9 +28,11 @@ dependencies:
   cloud_firestore: ^4.15.4
   firebase_database: ^10.5.4
 
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
+
 
 dev_dependencies:
   flutter_lints: ^5.0.0
@@ -52,6 +54,5 @@ flutter:
           weight: 700
         - asset: fonts/Roboto-ExtraBold.ttf
           weight: 800
-
 
 

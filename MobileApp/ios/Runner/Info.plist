@@ -6,9 +6,7 @@
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleDisplayName</key>
 
-
 	<string>Capstoneproject Mobileapp</string>
-
 
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
@@ -18,9 +16,7 @@
 	<string>6.0</string>
 	<key>CFBundleName</key>
 
-
 	<string>capstoneproject_mobileapp</string>
-
 
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
