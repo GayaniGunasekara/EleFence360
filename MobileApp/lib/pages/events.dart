@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'location.dart';
 
 class Event {
@@ -17,7 +16,7 @@ class Event {
 }
 
 class EventPage extends StatefulWidget {
-  const EventPage({super.key});
+  const EventPage({super.key, required String location});
 
   @override
   State<EventPage> createState() => _EventPageState();
@@ -144,7 +143,7 @@ class _EventPageState extends State<EventPage> {
                 ),
               ),
               const SizedBox(height: 12),
-              EventLocationMap(event: selectedEvent!),
+              EventLocationMap(event: selectedEvent!, location: '',),
             ],
           ],
         ),

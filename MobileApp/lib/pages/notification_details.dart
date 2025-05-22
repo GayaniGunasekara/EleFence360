@@ -1,4 +1,6 @@
+import 'package:capstoneproject_mobileapp/pages/events.dart';
 import 'package:flutter/material.dart';
+
 
 
 class NotificationDetailPage extends StatelessWidget {
@@ -39,12 +41,16 @@ class NotificationDetailPage extends StatelessWidget {
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              buildInfo('Alert No :', alertNumber),
-              buildInfo('Notification Type :', type),
-              buildInfoLink('Location :', 'View', () {
-                // Replace with your map logic
-                print('Open map for $location');
-              }),
+                buildInfo('Alert No :', alertNumber),
+                buildInfo('Notification Type :', type),
+                buildInfoLink('Location :', 'View', () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                    builder: (context) => EventPage(location: location),
+                    ),
+                  );
+                }),
               buildInfo('Detected Time/ Date :', dateTime),
             ],
           ),

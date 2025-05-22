@@ -2,7 +2,6 @@
     <application
 
         android:label="capstoneproject_mobileapp"
-
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity

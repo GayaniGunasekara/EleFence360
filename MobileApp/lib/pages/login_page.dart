@@ -1,3 +1,4 @@
+import 'package:capstoneproject_mobileapp/pages/home_page.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -185,11 +186,15 @@ class _LoginPageState extends State<LoginPage> {
             ),
             SizedBox(height: 10),
             ElevatedButton(
-              onPressed: () async {
+                onPressed: () async {
                 if (_formKey.currentState!.validate()) {
                   await loginUser();
+                  Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(builder: (context) => HomePage()),
+                  );
                 }
-              },
+                },
               style: ElevatedButton.styleFrom(
                 minimumSize: Size(fieldWidth * 0.6, 30),
                 padding: EdgeInsets.zero,

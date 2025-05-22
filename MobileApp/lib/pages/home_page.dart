@@ -1,14 +1,16 @@
+import 'package:capstoneproject_mobileapp/pages/ContactForm.dart';
+import 'package:capstoneproject_mobileapp/pages/notifications.dart';
+import 'package:capstoneproject_mobileapp/pages/user_model.dart';
 import 'package:flutter/material.dart';
-import 'package:health_app/pages/user_model.dart';
 import 'package:provider/provider.dart';
 
 class HomePage extends StatelessWidget {
-  const HomePage({Key? key}) : super(key: key);
+  const HomePage({super.key});
 
   @override
   Widget build(BuildContext context) {
     final userProfile = Provider.of<UserProvider>(context).userProfile;
-    
+
     return Scaffold(
       body: Container(
         decoration: const BoxDecoration(
@@ -20,7 +22,10 @@ class HomePage extends StatelessWidget {
         ),
         child: SafeArea(
           child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 16.0),
+            padding: const EdgeInsets.symmetric(
+              horizontal: 24.0,
+              vertical: 16.0,
+            ),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -67,29 +72,23 @@ class HomePage extends StatelessWidget {
                     child: Column(
                       mainAxisSize: MainAxisSize.min,
                       children: [
-                        _buildRoundedButton(
+                        _buildRoundedButton(context, 'Your Notification', () {
+                          Navigator.push(
                           context,
-                          'Your Notification',
-                          () {
-                            // Handle notification button press
-                            ScaffoldMessenger.of(context).showSnackBar(
-                              const SnackBar(content: Text('Notifications')),
-                            );
-                          },
-                          const Color(0xFF3C5A88),
-                        ),
+                          MaterialPageRoute(
+                            builder: (context) => NotificationApp(),
+                          ),
+                          );
+                        }, const Color(0xFF3C5A88)),
                         const SizedBox(height: 16),
-                        _buildRoundedButton(
-                          context,
-                          'Emergency Contacts',
-                          () {
-                            // Handle emergency contacts button press
-                            ScaffoldMessenger.of(context).showSnackBar(
-                              const SnackBar(content: Text('Emergency Contacts')),
-                            );
-                          },
-                          const Color(0xFF3C5A88),
-                        ),
+                        _buildRoundedButton(context, 'Emergency Contacts', () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => ContactFormScreen(),
+                            ),
+                          );
+                        }, const Color(0xFF3C5A88)),
                       ],
                     ),
                   ),
@@ -104,7 +103,11 @@ class HomePage extends StatelessWidget {
   }
 
   Widget _buildRoundedButton(
-      BuildContext context, String text, VoidCallback onPressed, Color color) {
+    BuildContext context,
+    String text,
+    VoidCallback onPressed,
+    Color color,
+  ) {
     return SizedBox(
       width: double.infinity,
       child: ElevatedButton(
@@ -128,12 +131,12 @@ class HomePage extends StatelessWidget {
 }
 
 class ProfilePage extends StatelessWidget {
-  const ProfilePage({Key? key}) : super(key: key);
+  const ProfilePage({super.key});
 
   @override
   Widget build(BuildContext context) {
     final userProfile = Provider.of<UserProvider>(context).userProfile;
-    
+
     return Scaffold(
       body: Container(
         decoration: const BoxDecoration(
@@ -145,7 +148,10 @@ class ProfilePage extends StatelessWidget {
         ),
         child: SafeArea(
           child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 16.0),
+            padding: const EdgeInsets.symmetric(
+              horizontal: 24.0,
+              vertical: 16.0,
+            ),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
@@ -190,7 +196,10 @@ class ProfilePage extends StatelessWidget {
                     children: [
                       ProfileInfoItem(label: 'Name:', value: userProfile.name),
                       const SizedBox(height: 10),
-                      ProfileInfoItem(label: 'Contact No:', value: userProfile.contactNo),
+                      ProfileInfoItem(
+                        label: 'Contact No:',
+                        value: userProfile.contactNo,
+                      ),
                       const SizedBox(height: 10),
                       ProfileInfoItem(label: 'NIC:', value: userProfile.nic),
                       const SizedBox(height: 10),
@@ -216,24 +225,14 @@ class ProfileInfoItem extends StatelessWidget {
   final String label;
   final String value;
 
-  const ProfileInfoItem({
-    Key? key,
-    required this.label,
-    required this.value,
-  }) : super(key: key);
+  const ProfileInfoItem({super.key, required this.label, required this.value});
 
   @override
   Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
-          label,
-          style: const TextStyle(
-            color: Colors.white,
-            fontSize: 14,
-          ),
-        ),
+        Text(label, style: const TextStyle(color: Colors.white, fontSize: 14)),
         const SizedBox(height: 2),
         Text(
           value,
@@ -249,62 +248,62 @@ class ProfileInfoItem extends StatelessWidget {
 }
 
 class ProfileActionButtons extends StatelessWidget {
-  const ProfileActionButtons({Key? key}) : super(key: key);
+  const ProfileActionButtons({super.key});
 
   @override
-Widget build(BuildContext context) {
-  return Column(
-    crossAxisAlignment: CrossAxisAlignment.stretch,
-    children: [
-      ElevatedButton(
-        onPressed: () {
-          // Handle edit profile
-          ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(content: Text('Edit Profile')),
-          );
-        },
-        style: ElevatedButton.styleFrom(
-          backgroundColor: const Color(0xFF3C5A88),
-          padding: const EdgeInsets.symmetric(vertical: 14),
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(30),
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: [
+        ElevatedButton(
+          onPressed: () {
+            // Handle edit profile
+            ScaffoldMessenger.of(
+              context,
+            ).showSnackBar(const SnackBar(content: Text('Edit Profile')));
+          },
+          style: ElevatedButton.styleFrom(
+            backgroundColor: const Color(0xFF3C5A88),
+            padding: const EdgeInsets.symmetric(vertical: 14),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(30),
+            ),
+          ),
+          child: const Text(
+            'Edit',
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: 16,
+              fontWeight: FontWeight.w500,
+            ),
           ),
         ),
-        child: const Text(
-          'Edit',
-          style: TextStyle(
-            color: Colors.white,
-            fontSize: 16,
-            fontWeight: FontWeight.w500,
+        const SizedBox(height: 12),
+        ElevatedButton(
+          onPressed: () {
+            // Handle logout
+            ScaffoldMessenger.of(
+              context,
+            ).showSnackBar(const SnackBar(content: Text('Logged Out')));
+            Navigator.pop(context);
+          },
+          style: ElevatedButton.styleFrom(
+            backgroundColor: const Color(0xFF3C5A88),
+            padding: const EdgeInsets.symmetric(vertical: 14),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(30),
+            ),
+          ),
+          child: const Text(
+            'Log Out',
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: 16,
+              fontWeight: FontWeight.w500,
+            ),
           ),
         ),
-      ),
-      const SizedBox(height: 12),
-      ElevatedButton(
-        onPressed: () {
-          // Handle logout
-          ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(content: Text('Logged Out')),
-          );
-          Navigator.pop(context);
-        },
-        style: ElevatedButton.styleFrom(
-          backgroundColor: const Color(0xFF3C5A88),
-          padding: const EdgeInsets.symmetric(vertical: 14),
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(30),
-          ),
-        ),
-        child: const Text(
-          'Log Out',
-          style: TextStyle(
-            color: Colors.white,
-            fontSize: 16,
-            fontWeight: FontWeight.w500,
-          ),
-        ),
-      ),
-    ],
-  );
-}
+      ],
+    );
+  }
 }

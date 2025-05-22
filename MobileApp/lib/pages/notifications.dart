@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'notification_details.dart';
+import 'package:capstoneproject_mobileapp/pages/notification_details.dart';
 
 void main() {
   runApp(NotificationApp());
@@ -155,4 +155,3 @@ class TopWaveClipper extends CustomClipper<Path> {
   @override
   bool shouldReclip(CustomClipper<Path> oldClipper) => false;
 }
-

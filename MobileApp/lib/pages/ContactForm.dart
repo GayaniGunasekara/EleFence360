@@ -1,20 +1,20 @@
-import 'package:contactform/pages/Electricity%20Board.dart';
-import 'package:contactform/pages/Police%20Station.dart';
-import 'package:contactform/pages/Railway%20Station.dart';
-import 'package:contactform/pages/Wildlife%20Department.dart';
+import 'package:capstoneproject_mobileapp/pages/Electricity%20Board.dart';
+import 'package:capstoneproject_mobileapp/pages/Police%20Station.dart';
+import 'package:capstoneproject_mobileapp/pages/Railway%20Station.dart';
+import 'package:capstoneproject_mobileapp/pages/Wildlife%20Department.dart';
 import 'package:flutter/material.dart';
 import 'Ministry of Health.dart';
 
 class ContactFormScreen extends StatelessWidget {
   final List<String> contactOptions = [
     'HOSPITAL',
-    'ELECTRICITY BORD',
+    'ELECTRICITY BOARD',
     'WILDLIFE DEPARTMENT',
     'POLICE STATIONS',
     'RAILWAY STATIONS',
   ];
 
-   ContactFormScreen({super.key});
+  ContactFormScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -62,68 +62,81 @@ class ContactFormScreen extends StatelessWidget {
                 color: Color(0xFF6ED3C7),
                 padding: EdgeInsets.symmetric(vertical: 40, horizontal: 10),
                 child: Column(
-                  children: contactOptions
-                      .map(
-                        (option) => Padding(
-                          padding: const EdgeInsets.symmetric(vertical: 12.0),
-                          child: SizedBox(
-                            width: double.infinity,
-                            child: ElevatedButton(
-                              style: ElevatedButton.styleFrom(
-                                backgroundColor: Color(0xFF4EB1A7),
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(24),
-                                ),
-                                padding: EdgeInsets.symmetric(vertical: 18),
-                                elevation: 0,
+                  children:
+                      contactOptions
+                          .map(
+                            (option) => Padding(
+                              padding: const EdgeInsets.symmetric(
+                                vertical: 12.0,
                               ),
-                              onPressed: () {
-                                Widget page;
-                                switch (option) {
-                                  case 'HOSPITAL':
-                                    page = HospitalDetailsApp();
-                                    break;
-                                  case 'ELECTRICITY BORD':
-                                    page = ElectricityBoardApp();
-                                    break;
-                                  case 'WILDLIFE DEPARTMENT':
-                                    page = WildlifeDepartmentApp();
-                                    break;
-                                  case 'POLICE STATIONS':
-                                    page = PoliceStationApp();
-                                    break;
-                                  case 'RAILWAY STATIONS':
-                                    page = RailwayStationApp();
-                                    break;
-                                  default:
-                                    page = Scaffold(body: Center(child: Text('Page not found')));
-                                }
-
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(builder: (context) => page),
-                                );
-                              },
-
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Text(
-                                    option,
-                                    style: TextStyle(
-                                      color: Colors.black87,
-                                      fontSize: 16,
-                                      letterSpacing: 1.0,
+                              child: SizedBox(
+                                width: double.infinity,
+                                child: ElevatedButton(
+                                  style: ElevatedButton.styleFrom(
+                                    backgroundColor: Color(0xFF4EB1A7),
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(24),
                                     ),
+                                    padding: EdgeInsets.symmetric(vertical: 18),
+                                    elevation: 0,
                                   ),
-                                  Icon(Icons.chevron_right, color: Colors.black54),
-                                ],
+                                  onPressed: () {
+                                    Widget page;
+                                    switch (option) {
+                                      case 'HOSPITAL':
+                                        page = HospitalDetailsApp();
+                                        break;
+                                      case 'ELECTRICITY BORD':
+                                        page = ElectricityBoardApp();
+                                        break;
+                                      case 'WILDLIFE DEPARTMENT':
+                                        page = WildlifeDepartmentApp();
+                                        break;
+                                      case 'POLICE STATIONS':
+                                        page = PoliceStationApp();
+                                        break;
+                                      case 'RAILWAY STATIONS':
+                                        page = RailwayStationApp();
+                                        break;
+                                      default:
+                                        page = Scaffold(
+                                          body: Center(
+                                            child: Text('Page not found'),
+                                          ),
+                                        );
+                                    }
+
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) => page,
+                                      ),
+                                    );
+                                  },
+
+                                  child: Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Text(
+                                        option,
+                                        style: TextStyle(
+                                          color: Colors.black87,
+                                          fontSize: 16,
+                                          letterSpacing: 1.0,
+                                        ),
+                                      ),
+                                      Icon(
+                                        Icons.chevron_right,
+                                        color: Colors.black54,
+                                      ),
+                                    ],
+                                  ),
+                                ),
                               ),
                             ),
-                          ),
-                        ),
-                      )
-                      .toList(),
+                          )
+                          .toList(),
                 ),
               ),
             ],
