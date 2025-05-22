@@ -1,6 +1,10 @@
 {
-    "name": "contactform",
-    "short_name": "contactform",
+
+
+
+    "name": "capstoneproject_mobileapp",
+    "short_name": "capstoneproject_mobileapp",
+
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",
