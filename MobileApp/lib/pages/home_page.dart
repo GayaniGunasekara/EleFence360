@@ -1,4 +1,5 @@
 import 'package:capstoneproject_mobileapp/pages/ContactForm.dart';
+import 'package:capstoneproject_mobileapp/pages/login_page.dart';
 import 'package:capstoneproject_mobileapp/pages/notifications.dart';
 import 'package:capstoneproject_mobileapp/pages/user_model.dart';
 import 'package:flutter/material.dart';
@@ -74,10 +75,10 @@ class HomePage extends StatelessWidget {
                       children: [
                         _buildRoundedButton(context, 'Your Notification', () {
                           Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => NotificationApp(),
-                          ),
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => NotificationApp(),
+                            ),
                           );
                         }, const Color(0xFF3C5A88)),
                         const SizedBox(height: 16),
@@ -198,7 +199,7 @@ class ProfilePage extends StatelessWidget {
                       const SizedBox(height: 10),
                       ProfileInfoItem(
                         label: 'Contact No:',
-                        value: userProfile.contactNo,
+                        value: userProfile.phone,
                       ),
                       const SizedBox(height: 10),
                       ProfileInfoItem(label: 'NIC:', value: userProfile.nic),
@@ -281,11 +282,28 @@ class ProfileActionButtons extends StatelessWidget {
         const SizedBox(height: 12),
         ElevatedButton(
           onPressed: () {
-            // Handle logout
+            // Clear user profile
+            Provider.of<UserProvider>(context, listen: false).updateUserProfile(
+              UserProfile(
+                'assets/profile_pic.jpg',
+                name: '',
+                phone: '',
+                nic: '',
+                address: '',
+              ),
+            );
+
+            // Show logout message
             ScaffoldMessenger.of(
               context,
             ).showSnackBar(const SnackBar(content: Text('Logged Out')));
-            Navigator.pop(context);
+
+            // Navigate to LoginPage and remove all previous routes
+            Navigator.pushAndRemoveUntil(
+              context,
+              MaterialPageRoute(builder: (context) => const LoginPage()),
+              (route) => false,
+            );
           },
           style: ElevatedButton.styleFrom(
             backgroundColor: const Color(0xFF3C5A88),

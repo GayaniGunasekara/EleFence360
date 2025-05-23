@@ -2,33 +2,49 @@ import 'package:flutter/material.dart';
 
 class UserProfile {
   final String name;
-  final String contactNo;
+  final String phone;
   final String nic;
   final String address;
   final String profileImage;
 
-  UserProfile({
+  UserProfile(
+    this.profileImage, {
     required this.name,
-    required this.contactNo,
+    required this.phone,
     required this.nic,
     required this.address,
-    required this.profileImage,
   });
+
+  // Factory constructor to create a UserProfile from a map (e.g., from Firebase Realtime Database)
+  factory UserProfile.fromMap(Map<dynamic, dynamic> data) {
+    return UserProfile(
+      data['profileImage'] ?? '',
+      name: data['name'] ?? '',
+      phone: data['phone'] ?? '',
+      nic: data['nic'] ?? '',
+      address: data['address'] ?? '',
+    );
+  }
+
+  // Convert UserProfile to map (for uploading to database)
+  Map<String, dynamic> toMap() {
+    return {
+      'name': name,
+      'phone': phone,
+      'nic': nic,
+      'address': address,
+      'profileImage': 'assets/profile_pic.jpg',
+    };
+  }
 }
 
 class UserProvider extends ChangeNotifier {
-  UserProfile _userProfile = UserProfile(
-    name: 'Lalitha Kumari',
-    contactNo: '071-7512345',
-    nic: '658926134V',
-    address: 'No.125, Hospital Road, Galgamuwa',
-    profileImage: 'assets/profile_pic.jpg',
-  );
+  UserProfile? _userProfile;
 
-  UserProfile get userProfile => _userProfile;
+  UserProfile get userProfile => _userProfile!;
 
-  void updateUserProfile(UserProfile newProfile) {
-    _userProfile = newProfile;
+  void updateUserProfile(UserProfile profile) {
+    _userProfile = profile;
     notifyListeners();
   }
 }

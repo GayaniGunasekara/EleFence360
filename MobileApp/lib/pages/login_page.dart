@@ -1,8 +1,10 @@
 import 'package:capstoneproject_mobileapp/pages/home_page.dart';
+import 'package:capstoneproject_mobileapp/pages/user_model.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:provider/provider.dart';
 import 'registration_page.dart';
 
 String? validateNIC(String? value) {
@@ -42,20 +44,24 @@ class _LoginPageState extends State<LoginPage> {
       'users',
     );
     DataSnapshot snapshot = await dbRef.get();
-    bool found = false;
+    UserProfile? loggedInUser;
 
     if (snapshot.exists) {
       Map<dynamic, dynamic> users = snapshot.value as Map<dynamic, dynamic>;
       users.forEach((key, value) {
         if (value['nic'] == nicController.text.trim() &&
             value['phone'] == phoneController.text.trim()) {
-          found = true;
+          loggedInUser = UserProfile.fromMap(value);
         }
       });
     }
 
     if (!mounted) return false;
-    if (found) {
+    if (loggedInUser != null) {
+      Provider.of<UserProvider>(
+        context,
+        listen: false,
+      ).updateUserProfile(loggedInUser!);
       ScaffoldMessenger.of(
         context,
       ).showSnackBar(SnackBar(content: Text('Login Successful!')));
