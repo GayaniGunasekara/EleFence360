@@ -51,13 +51,13 @@ class _RegistrationPageState extends State<RegistrationPage> {
           return;
         }
 
-        final userRef = FirebaseDatabase.instance.ref('users').push();
+        final nic = nicController.text.trim();
+        final userRef = FirebaseDatabase.instance.ref('users/$nic');
         await userRef.set({
           'name': nameController.text.trim(),
           'nic': nicController.text.trim(),
           'phone': phoneController.text.trim(),
           'address': addressController.text.trim(),
-          'timestamp': ServerValue.timestamp,
         });
 
         nameController.clear();
@@ -100,252 +100,261 @@ class _RegistrationPageState extends State<RegistrationPage> {
   @override
   Widget build(BuildContext context) {
     final double screenWidth = MediaQuery.of(context).size.width;
-    final double containerWidth =
-        screenWidth * 0.8 > 400 ? 400 : screenWidth * 0.8;
-    final double fieldWidth = containerWidth * 0.8;
-    final double labelPadding = fieldWidth - 30;
 
     return Scaffold(
-      body: LayoutBuilder(
-        builder: (context, constraints) {
-          return SingleChildScrollView(
-            child: Center(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  SizedBox(
-                    height:
-                        constraints.maxHeight * 0.20 > 170
-                            ? 170
-                            : constraints.maxHeight * 0.20,
-                  ),
-                  Text(
-                    'Create Your Account!',
-                    style: TextStyle(
-                      fontSize: 24,
-                      fontWeight: FontWeight.bold,
-                      color: Color(0xFFFFFFFF),
+      body: SafeArea(
+        child: LayoutBuilder(
+          builder: (context, constraints) {
+            final double containerWidth =
+                screenWidth * 0.8 > 400 ? 400 : screenWidth * 0.8;
+            final double fieldWidth = containerWidth * 0.8;
+            final double labelPadding = fieldWidth - 30;
+
+            return SingleChildScrollView(
+              child: Center(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    SizedBox(
+                      height:
+                          constraints.maxHeight * 0.20 > 170
+                              ? 170
+                              : constraints.maxHeight * 0.20,
                     ),
-                  ),
-                  SizedBox(height: 30),
-                  Container(
-                    width: containerWidth,
-                    height:
-                        constraints.maxHeight * 0.55 > 500
-                            ? 500
-                            : constraints.maxHeight * 0.55,
-                    padding: EdgeInsets.symmetric(vertical: 20, horizontal: 10),
-                    decoration: BoxDecoration(
-                      color: Color(0xFF4E8BD4).withOpacity(0.5),
-                      borderRadius: BorderRadius.circular(15),
-                    ),
-                    child: Form(
-                      key: _formKey,
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Padding(
-                            padding: EdgeInsets.only(right: labelPadding),
-                            child: Text(
-                              'Name',
-                              style: TextStyle(
-                                fontSize: 10,
-                                fontWeight: FontWeight.bold,
-                                color: Colors.white,
-                              ),
-                            ),
-                          ),
-                          Container(
-                            width: fieldWidth,
-                            height: 40,
-                            margin: EdgeInsets.only(bottom: 20, top: 5),
-                            decoration: BoxDecoration(
-                              color: Colors.white,
-                              borderRadius: BorderRadius.circular(5),
-                            ),
-                            child: TextFormField(
-                              controller: nameController,
-                              decoration: InputDecoration(
-                                hintText: 'Enter your name',
-                                hintStyle: TextStyle(fontSize: 15),
-                                filled: true,
-                                fillColor: Colors.white,
-                                border: OutlineInputBorder(
-                                  borderSide: BorderSide.none,
-                                ),
-                                contentPadding: EdgeInsets.symmetric(
-                                  horizontal: 10,
-                                ),
-                              ),
-                              validator: (value) {
-                                if (value == null || value.isEmpty) {
-                                  return 'Name is required';
-                                }
-                                return null;
-                              },
-                            ),
-                          ),
-                          Padding(
-                            padding: EdgeInsets.only(right: labelPadding - 42),
-                            child: Text(
-                              'Phone Number',
-                              style: TextStyle(
-                                fontSize: 10,
-                                fontWeight: FontWeight.bold,
-                                color: Colors.white,
-                              ),
-                            ),
-                          ),
-                          Container(
-                            width: fieldWidth,
-                            height: 40,
-                            margin: EdgeInsets.only(bottom: 20, top: 5),
-                            decoration: BoxDecoration(
-                              color: Colors.white,
-                              borderRadius: BorderRadius.circular(5),
-                            ),
-                            child: TextFormField(
-                              controller: phoneController,
-                              validator: validateMobile,
-                              decoration: InputDecoration(
-                                hintText: 'Enter your phone number',
-                                hintStyle: TextStyle(fontSize: 15),
-                                filled: true,
-                                fillColor: Colors.white,
-                                border: OutlineInputBorder(
-                                  borderSide: BorderSide.none,
-                                ),
-                                contentPadding: EdgeInsets.symmetric(
-                                  horizontal: 10,
-                                ),
-                              ),
-                            ),
-                          ),
-                          Padding(
-                            padding: EdgeInsets.only(right: labelPadding + 10),
-                            child: Text(
-                              'NIC',
-                              style: TextStyle(
-                                fontSize: 10,
-                                fontWeight: FontWeight.bold,
-                                color: Colors.white,
-                              ),
-                            ),
-                          ),
-                          Container(
-                            width: fieldWidth,
-                            height: 40,
-                            margin: EdgeInsets.only(bottom: 20, top: 5),
-                            decoration: BoxDecoration(
-                              color: Colors.white,
-                              borderRadius: BorderRadius.circular(5),
-                            ),
-                            child: TextFormField(
-                              controller: nicController,
-                              validator: validateNIC,
-                              decoration: InputDecoration(
-                                hintText: 'Enter National Id number',
-                                hintStyle: TextStyle(fontSize: 15),
-                                filled: true,
-                                fillColor: Colors.white,
-                                border: OutlineInputBorder(
-                                  borderSide: BorderSide.none,
-                                ),
-                                contentPadding: EdgeInsets.symmetric(
-                                  horizontal: 10,
-                                ),
-                              ),
-                            ),
-                          ),
-                          Padding(
-                            padding: EdgeInsets.only(right: labelPadding - 10),
-                            child: Text(
-                              'Address',
-                              style: TextStyle(
-                                fontSize: 10,
-                                fontWeight: FontWeight.bold,
-                                color: Colors.white,
-                              ),
-                            ),
-                          ),
-                          Container(
-                            width: fieldWidth,
-                            height: 40,
-                            margin: EdgeInsets.only(bottom: 15, top: 5),
-                            decoration: BoxDecoration(
-                              color: Colors.white,
-                              borderRadius: BorderRadius.circular(5),
-                            ),
-                            child: TextFormField(
-                              controller: addressController,
-                              decoration: InputDecoration(
-                                hintText: 'Enter your address',
-                                hintStyle: TextStyle(fontSize: 15),
-                                filled: true,
-                                fillColor: Colors.white,
-                                border: OutlineInputBorder(
-                                  borderSide: BorderSide.none,
-                                ),
-                                contentPadding: EdgeInsets.symmetric(
-                                  horizontal: 10,
-                                ),
-                              ),
-                              validator: (value) {
-                                if (value == null || value.isEmpty) {
-                                  return 'Address is required';
-                                }
-                                return null;
-                              },
-                            ),
-                          ),
-                          SizedBox(
-                            height:
-                                constraints.maxHeight * 0.02 > 20
-                                    ? 20
-                                    : constraints.maxHeight * 0.02,
-                          ),
-                          ElevatedButton(
-                            onPressed: () async {
-                              if (_formKey.currentState!.validate()) {
-                                bool exists = await userExists(
-                                  nicController.text.trim(),
-                                  phoneController.text.trim(),
-                                );
-                                if (exists) {
-                                  ScaffoldMessenger.of(context).showSnackBar(
-                                    SnackBar(
-                                      content: Text('User already exists!'),
-                                      backgroundColor: Colors.red,
-                                    ),
-                                  );
-                                } else {
-                                  await saveUserData(context);
-                                }
-                              }
-                            },
-                            style: ElevatedButton.styleFrom(
-                              minimumSize: Size(fieldWidth * 0.75, 30),
-                              padding: EdgeInsets.zero,
-                              backgroundColor: Colors.black,
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(5),
-                              ),
-                            ),
-                            child: Text(
-                              'Register',
-                              style: TextStyle(color: Colors.white),
-                            ),
-                          ),
-                        ],
+                    Text(
+                      'Create Your Account!',
+                      style: TextStyle(
+                        fontSize: 24,
+                        fontWeight: FontWeight.bold,
+                        color: Color(0xFFFFFFFF),
                       ),
                     ),
-                  ),
-                ],
+                    SizedBox(height: 30),
+                    Container(
+                      width: containerWidth,
+                      padding: EdgeInsets.symmetric(
+                        vertical: 20,
+                        horizontal: 10,
+                      ),
+                      decoration: BoxDecoration(
+                        color: Color(0xFF4E8BD4).withOpacity(0.5),
+                        borderRadius: BorderRadius.circular(15),
+                      ),
+                      child: Form(
+                        key: _formKey,
+                        child: Column(
+                          mainAxisSize: MainAxisSize.min,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Padding(
+                              padding: EdgeInsets.only(right: labelPadding),
+                              child: Text(
+                                'Name',
+                                style: TextStyle(
+                                  fontSize: 10,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.white,
+                                ),
+                              ),
+                            ),
+                            Container(
+                              width: fieldWidth,
+                              height: 40,
+                              margin: EdgeInsets.only(bottom: 20, top: 5),
+                              decoration: BoxDecoration(
+                                color: Colors.white,
+                                borderRadius: BorderRadius.circular(5),
+                              ),
+                              child: TextFormField(
+                                controller: nameController,
+                                decoration: InputDecoration(
+                                  hintText: 'Enter your name',
+                                  hintStyle: TextStyle(fontSize: 15),
+                                  filled: true,
+                                  fillColor: Colors.white,
+                                  border: OutlineInputBorder(
+                                    borderSide: BorderSide.none,
+                                  ),
+                                  contentPadding: EdgeInsets.symmetric(
+                                    horizontal: 10,
+                                  ),
+                                ),
+                                validator: (value) {
+                                  if (value == null || value.isEmpty) {
+                                    return 'Name is required';
+                                  }
+                                  return null;
+                                },
+                              ),
+                            ),
+                            Padding(
+                              padding: EdgeInsets.only(
+                                right: labelPadding - 42,
+                              ),
+                              child: Text(
+                                'Phone Number',
+                                style: TextStyle(
+                                  fontSize: 10,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.white,
+                                ),
+                              ),
+                            ),
+                            Container(
+                              width: fieldWidth,
+                              height: 40,
+                              margin: EdgeInsets.only(bottom: 20, top: 5),
+                              decoration: BoxDecoration(
+                                color: Colors.white,
+                                borderRadius: BorderRadius.circular(5),
+                              ),
+                              child: TextFormField(
+                                controller: phoneController,
+                                validator: validateMobile,
+                                decoration: InputDecoration(
+                                  hintText: 'Enter your phone number',
+                                  hintStyle: TextStyle(fontSize: 15),
+                                  filled: true,
+                                  fillColor: Colors.white,
+                                  border: OutlineInputBorder(
+                                    borderSide: BorderSide.none,
+                                  ),
+                                  contentPadding: EdgeInsets.symmetric(
+                                    horizontal: 10,
+                                  ),
+                                ),
+                              ),
+                            ),
+                            Padding(
+                              padding: EdgeInsets.only(
+                                right: labelPadding + 10,
+                              ),
+                              child: Text(
+                                'NIC',
+                                style: TextStyle(
+                                  fontSize: 10,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.white,
+                                ),
+                              ),
+                            ),
+                            Container(
+                              width: fieldWidth,
+                              height: 40,
+                              margin: EdgeInsets.only(bottom: 20, top: 5),
+                              decoration: BoxDecoration(
+                                color: Colors.white,
+                                borderRadius: BorderRadius.circular(5),
+                              ),
+                              child: TextFormField(
+                                controller: nicController,
+                                validator: validateNIC,
+                                decoration: InputDecoration(
+                                  hintText: 'Enter National Id number',
+                                  hintStyle: TextStyle(fontSize: 15),
+                                  filled: true,
+                                  fillColor: Colors.white,
+                                  border: OutlineInputBorder(
+                                    borderSide: BorderSide.none,
+                                  ),
+                                  contentPadding: EdgeInsets.symmetric(
+                                    horizontal: 10,
+                                  ),
+                                ),
+                              ),
+                            ),
+                            Padding(
+                              padding: EdgeInsets.only(
+                                right: labelPadding - 10,
+                              ),
+                              child: Text(
+                                'Address',
+                                style: TextStyle(
+                                  fontSize: 10,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.white,
+                                ),
+                              ),
+                            ),
+                            Container(
+                              width: fieldWidth,
+                              height: 40,
+                              margin: EdgeInsets.only(bottom: 15, top: 5),
+                              decoration: BoxDecoration(
+                                color: Colors.white,
+                                borderRadius: BorderRadius.circular(5),
+                              ),
+                              child: TextFormField(
+                                controller: addressController,
+                                decoration: InputDecoration(
+                                  hintText: 'Enter your address',
+                                  hintStyle: TextStyle(fontSize: 15),
+                                  filled: true,
+                                  fillColor: Colors.white,
+                                  border: OutlineInputBorder(
+                                    borderSide: BorderSide.none,
+                                  ),
+                                  contentPadding: EdgeInsets.symmetric(
+                                    horizontal: 10,
+                                  ),
+                                ),
+                                validator: (value) {
+                                  if (value == null || value.isEmpty) {
+                                    return 'Address is required';
+                                  }
+                                  return null;
+                                },
+                              ),
+                            ),
+                            SizedBox(
+                              height:
+                                  constraints.maxHeight * 0.02 > 20
+                                      ? 20
+                                      : constraints.maxHeight * 0.02,
+                            ),
+                            ElevatedButton(
+                              onPressed: () async {
+                                if (_formKey.currentState!.validate()) {
+                                  bool exists = await userExists(
+                                    nicController.text.trim(),
+                                    phoneController.text.trim(),
+                                  );
+                                  if (exists) {
+                                    ScaffoldMessenger.of(context).showSnackBar(
+                                      SnackBar(
+                                        content: Text('User already exists!'),
+                                        backgroundColor: Colors.red,
+                                      ),
+                                    );
+                                  } else {
+                                    await saveUserData(context);
+                                  }
+                                }
+                              },
+                              style: ElevatedButton.styleFrom(
+                                minimumSize: Size(fieldWidth * 0.75, 30),
+                                padding: EdgeInsets.zero,
+                                backgroundColor: Colors.black,
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(5),
+                                ),
+                              ),
+                              child: Text(
+                                'Register',
+                                style: TextStyle(color: Colors.white),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
               ),
-            ),
-          );
-        },
+            );
+          },
+        ),
       ),
     );
   }

@@ -37,7 +37,7 @@ class _LoginPageState extends State<LoginPage> {
 
   final _formKey = GlobalKey<FormState>();
 
-  Future<void> loginUser() async {
+  Future<bool> loginUser() async {
     final DatabaseReference dbRef = FirebaseDatabase.instance.ref().child(
       'users',
     );
@@ -54,15 +54,17 @@ class _LoginPageState extends State<LoginPage> {
       });
     }
 
-    if (!mounted) return;
+    if (!mounted) return false;
     if (found) {
       ScaffoldMessenger.of(
         context,
       ).showSnackBar(SnackBar(content: Text('Login Successful!')));
+      return true;
     } else {
       ScaffoldMessenger.of(
         context,
       ).showSnackBar(SnackBar(content: Text('Invalid NIC or Mobile Number!')));
+      return false;
     }
   }
 
@@ -92,7 +94,6 @@ class _LoginPageState extends State<LoginPage> {
     final boxHeight = height < 600 ? height * 0.45 : 340.0;
     final fieldWidth = boxWidth * 0.8;
     final fieldHeight = boxHeight * 0.13;
-
 
     return Container(
       width: boxWidth,
@@ -186,15 +187,18 @@ class _LoginPageState extends State<LoginPage> {
             ),
             SizedBox(height: 10),
             ElevatedButton(
-                onPressed: () async {
+              onPressed: () async {
                 if (_formKey.currentState!.validate()) {
-                  await loginUser();
-                  Navigator.pushReplacement(
-                  context,
-                  MaterialPageRoute(builder: (context) => HomePage()),
-                  );
+                  bool loginSuccess = await loginUser();
+                  if (loginSuccess) {
+                    Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(builder: (context) => HomePage()),
+                    );
+                  }
                 }
-                },
+              },
+
               style: ElevatedButton.styleFrom(
                 minimumSize: Size(fieldWidth * 0.6, 30),
                 padding: EdgeInsets.zero,
@@ -210,7 +214,7 @@ class _LoginPageState extends State<LoginPage> {
               text: TextSpan(
                 text: "Don't have an account? ",
                 style: TextStyle(
-                    fontSize: width * 0.031,
+                  fontSize: width * 0.031,
                   fontWeight: FontWeight.bold,
                   color: Colors.white,
                 ),

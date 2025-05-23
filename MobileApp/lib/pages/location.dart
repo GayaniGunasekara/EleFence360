@@ -5,7 +5,11 @@ import 'events.dart';
 class EventLocationMap extends StatelessWidget {
   final Event event;
 
-  const EventLocationMap({super.key, required this.event, required String location});
+  const EventLocationMap({
+    super.key,
+    required this.event,
+    required String location,
+  });
 
   @override
   Widget build(BuildContext context) {
