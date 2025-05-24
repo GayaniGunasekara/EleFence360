@@ -6,6 +6,8 @@ void main() {
 }
 
 class NotificationApp extends StatelessWidget {
+  const NotificationApp({super.key});
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -31,17 +33,19 @@ class NotificationScreen extends StatelessWidget {
     NotificationItem('Other Emergencies', 0),
   ];
 
+  NotificationScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: Color(0xFF1E426B),
       body: Column(
         children: [
           ClipPath(
             clipper: TopWaveClipper(),
             child: Container(
-              height: 200,
-              color: Colors.teal[200],
+              height: 250,
+              color: Color(0xFF5199EE),
               alignment: Alignment.centerLeft,
               padding: EdgeInsets.symmetric(horizontal: 24),
               child: const Text(
@@ -49,7 +53,7 @@ class NotificationScreen extends StatelessWidget {
                 style: TextStyle(
                   fontSize: 32,
                   fontWeight: FontWeight.bold,
-                  color: Colors.indigo,
+                  color: Color(0xFFFFFFFF),
                 ),
               ),
             ),
@@ -61,7 +65,7 @@ class NotificationScreen extends StatelessWidget {
               itemBuilder: (context, index) {
                 final item = notifications[index];
                 return Card(
-                  color: Colors.indigo[900],
+                  color: Color(0xFF4E8BD4).withOpacity(0.5),
                   margin: const EdgeInsets.symmetric(vertical: 8),
                   child: Padding(
                     padding: const EdgeInsets.all(12),
@@ -71,11 +75,10 @@ class NotificationScreen extends StatelessWidget {
                           children: [
                             CircleAvatar(
                               radius: 15,
-                              backgroundColor: Colors.cyanAccent,
+                              backgroundColor: const Color(0xFFFFFFFF),
                             ),
                             if (item.count > 0)
                               Positioned(
-                                right: -5,
                                 top: -5,
                                 child: Container(
                                   padding: EdgeInsets.all(4),

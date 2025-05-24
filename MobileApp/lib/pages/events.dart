@@ -47,15 +47,18 @@ class _EventPageState extends State<EventPage> {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('🐘 Elephant Fence Alerts'),
-        centerTitle: true,
+        title: const Text(
+          'Alert Location',
+          style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
+        ),
         toolbarHeight: 70,
-        backgroundColor: const Color(0xFF2E5077),
+        backgroundColor: const Color(0xFF1E426B),
         foregroundColor: Colors.white,
         shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.vertical(bottom: Radius.circular(16)),
         ),
       ),
+      backgroundColor: const Color(0xFF1E426B),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
         child: Column(
@@ -93,14 +96,20 @@ class _EventPageState extends State<EventPage> {
                         decoration: BoxDecoration(
                           color: Colors.white,
                           border: Border(
-                            left: BorderSide(width: 5, color: const Color(0xFF4DA1A9)),
+                            left: BorderSide(
+                              width: 5,
+                              
+                            ),
                           ),
                           borderRadius: BorderRadius.circular(16),
                         ),
                         child: Row(
                           children: [
-                            const Icon(Icons.warning_amber_rounded,
-                                color: Color(0xFF4E8BD4), size: 40),
+                            const Icon(
+                              Icons.warning_amber_rounded,
+                              color: Color(0xFF4E8BD4),
+                              size: 40,
+                            ),
                             const SizedBox(width: 16),
                             Expanded(
                               child: Column(
@@ -109,21 +118,27 @@ class _EventPageState extends State<EventPage> {
                                   Text(
                                     event.name,
                                     style: const TextStyle(
-                                        fontSize: 18,
-                                        fontWeight: FontWeight.w600,
-                                        color: Colors.black),
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.w600,
+                                      color: Colors.black,
+                                    ),
                                   ),
                                   const SizedBox(height: 4),
                                   Text(
                                     "📅 ${event.date.toLocal()}",
                                     style: const TextStyle(
-                                        fontSize: 14, color: Colors.black54),
+                                      fontSize: 14,
+                                      color: Colors.black54,
+                                    ),
                                   ),
                                 ],
                               ),
                             ),
-                            const Icon(Icons.chevron_right,
-                                color: Color(0xFF4DA1A9), size: 30),
+                            const Icon(
+                              Icons.chevron_right,
+                              color: Color(0xFF4DA1A9),
+                              size: 30,
+                            ),
                           ],
                         ),
                       ),
@@ -143,7 +158,7 @@ class _EventPageState extends State<EventPage> {
                 ),
               ),
               const SizedBox(height: 12),
-              EventLocationMap(event: selectedEvent!, location: '',),
+              EventLocationMap(event: selectedEvent!, location: ''),
             ],
           ],
         ),
