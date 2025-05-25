@@ -19,130 +19,103 @@ class ContactFormScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: Text(
+          'Contact Details',
+          style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
+        ),
+        toolbarHeight: 70,
+        backgroundColor: Color(0xFF1E426B),
+        foregroundColor: Colors.white,
+        elevation: 0,
+      ),
       backgroundColor: Color(0xFF1E426B),
-      body: Center(
-        child: Container(
-          width: 350,
-          decoration: BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.circular(20),
-          ),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              // Header
-              Container(
-                width: double.infinity,
-                padding: EdgeInsets.symmetric(vertical: 20),
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
-                ),
-                child: Center(
-                  child: Container(
-                    padding: EdgeInsets.symmetric(vertical: 10, horizontal: 30),
-                    decoration: BoxDecoration(
-                      color: Color(0xFFEFEFEF),
-                      borderRadius: BorderRadius.circular(16),
-                    ),
-                    child: Text(
-                      'CONTACT DETAILS',
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 20,
-                        fontFamily: 'Serif',
-                        letterSpacing: 1.2,
+      body: SafeArea(
+        top: false,
+        child: Center(
+          child: Container(
+            margin: EdgeInsets.only(left: 30, right: 30, bottom: 60),
+            width: double.infinity,
+            height: 500,
+            decoration: BoxDecoration(
+              color: Color(0xFF4E8BD4).withOpacity(0.5),
+              borderRadius: BorderRadius.circular(16),
+            ),
+            padding: EdgeInsets.symmetric(vertical: 30, horizontal: 20),
+            child: Column(
+              children: contactOptions.map((option) {
+                return Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 12.0),
+                  child: SizedBox(
+                    width: double.infinity,
+                    child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Color(0xFFFFFFFF),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(16),
+                        ),
+                        padding: EdgeInsets.symmetric(vertical: 18),
+                        elevation: 0,
+                      ),
+                      onPressed: () {
+                        Widget page;
+                        switch (option) {
+                          case 'HOSPITAL':
+                            page = HospitalDetailsApp();
+                            break;
+                          case 'ELECTRICITY BOARD':
+                            page = ElectricityBoardApp();
+                            break;
+                          case 'WILDLIFE DEPARTMENT':
+                            page = WildlifeDepartmentApp();
+                            break;
+                          case 'POLICE STATIONS':
+                            page = PoliceStationApp();
+                            break;
+                          case 'RAILWAY STATIONS':
+                            page = RailwayStationApp();
+                            break;
+                          default:
+                            page = Scaffold(
+                              body: Center(child: Text('Page not found')),
+                            );
+                        }
+
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => page),
+                        );
+                      },
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.only(left: 15.0), // Add left padding here
+                            child: Text(
+                              option,
+                              style: TextStyle(
+                                color: Colors.black87,
+                                fontSize: 16,
+                                letterSpacing: 1.0,
+                              ),
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(right: 10.0), // Add right padding here
+                            child: Icon(Icons.chevron_right, color: const Color(0x88000000)),
+                          ),
+                        ],
                       ),
                     ),
                   ),
-                ),
-              ),
-              // Main body
-              Container(
-                color: Color(0xFF6ED3C7),
-                padding: EdgeInsets.symmetric(vertical: 40, horizontal: 10),
-                child: Column(
-                  children:
-                      contactOptions
-                          .map(
-                            (option) => Padding(
-                              padding: const EdgeInsets.symmetric(
-                                vertical: 12.0,
-                              ),
-                              child: SizedBox(
-                                width: double.infinity,
-                                child: ElevatedButton(
-                                  style: ElevatedButton.styleFrom(
-                                    backgroundColor: Color(0xFF4EB1A7),
-                                    shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(24),
-                                    ),
-                                    padding: EdgeInsets.symmetric(vertical: 18),
-                                    elevation: 0,
-                                  ),
-                                  onPressed: () {
-                                    Widget page;
-                                    switch (option) {
-                                      case 'HOSPITAL':
-                                        page = HospitalDetailsApp();
-                                        break;
-                                      case 'ELECTRICITY BORD':
-                                        page = ElectricityBoardApp();
-                                        break;
-                                      case 'WILDLIFE DEPARTMENT':
-                                        page = WildlifeDepartmentApp();
-                                        break;
-                                      case 'POLICE STATIONS':
-                                        page = PoliceStationApp();
-                                        break;
-                                      case 'RAILWAY STATIONS':
-                                        page = RailwayStationApp();
-                                        break;
-                                      default:
-                                        page = Scaffold(
-                                          body: Center(
-                                            child: Text('Page not found'),
-                                          ),
-                                        );
-                                    }
-
-                                    Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                        builder: (context) => page,
-                                      ),
-                                    );
-                                  },
-
-                                  child: Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      Text(
-                                        option,
-                                        style: TextStyle(
-                                          color: Colors.black87,
-                                          fontSize: 16,
-                                          letterSpacing: 1.0,
-                                        ),
-                                      ),
-                                      Icon(
-                                        Icons.chevron_right,
-                                        color: Colors.black54,
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ),
-                            ),
-                          )
-                          .toList(),
-                ),
-              ),
-            ],
+                );
+              }).toList(),
+            ),
           ),
         ),
       ),
     );
   }
 }
+
+

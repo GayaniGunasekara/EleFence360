@@ -1,19 +1,13 @@
 import 'package:flutter/material.dart';
 
-void main() {
-  runApp(HospitalDetailsApp());
-}
 
 class HospitalDetailsApp extends StatelessWidget {
   const HospitalDetailsApp({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Contact Details 6',
-      debugShowCheckedModeBanner: false,
-      home: HospitalDetailsScreen(),
-    );
+    return HospitalDetailsScreen();
+    
   }
 }
 
@@ -22,12 +16,27 @@ class HospitalDetailsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final Color backgroundColor = Color(0xFF7AD0C2); // Main card background
-    final Color cardColor = Color(0xFF5FB4B0);      // Info card color
-    final Color headerColor = Colors.white;         // Header background
+    final Color backgroundColor = Color(0xFF4E8BD4).withOpacity(0.5); 
+    final Color cardColor = Color(0xFFFFFFFF);      // Info card color
+// Header background
 
     return Scaffold(
-      backgroundColor: Color(0xFF232323),
+      appBar: AppBar(
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back, color: Colors.white),
+          onPressed: () {
+            Navigator.of(context).pop(); 
+          },
+        ),
+        title: Text(
+          'Hospital Details',
+          style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
+        ),
+        toolbarHeight: 70,
+        backgroundColor: Color(0xFF1E426B),        
+        elevation: 0,
+      ),
+      backgroundColor: Color(0xFF1E426B),
       body: SafeArea(
         child: Center(
           child: SingleChildScrollView(
@@ -45,31 +54,9 @@ class HospitalDetailsScreen extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       // Header
-                      Center(
-                        child: Container(
-                          padding: EdgeInsets.symmetric(vertical: 14),
-                          width: double.infinity,
-                          decoration: BoxDecoration(
-                            color: headerColor,
-                            borderRadius: BorderRadius.circular(18),
-                          ),
-                          child: Center(
-                            child: Text(
-                              "HOSPITALS DETAILS",
-                              style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                fontSize: 20,
-                                fontFamily: 'Serif',
-                                color: Colors.black,
-                                letterSpacing: 1.1,
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-                      SizedBox(height: 32),
+
                       InfoCard(
-                        color: cardColor,
+                        cardColor: cardColor,
                         icon: Icons.apartment,
                         child: Text(
                           "Ministry of Health",
@@ -78,7 +65,7 @@ class HospitalDetailsScreen extends StatelessWidget {
                       ),
                       SizedBox(height: 18),
                       InfoCard(
-                        color: cardColor,
+                        cardColor: cardColor,
                         icon: Icons.location_on_outlined,
                         child: Text(
                           "Suwasiripaya, No. 385,\nRev. Baddegama Wimalawansa\nThero Mawatha,\nColombo 10, Sri Lanka.",
@@ -87,7 +74,7 @@ class HospitalDetailsScreen extends StatelessWidget {
                       ),
                       SizedBox(height: 18),
                       InfoCard(
-                        color: cardColor,
+                        cardColor: cardColor,
                         icon: Icons.phone,
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
@@ -101,7 +88,7 @@ class HospitalDetailsScreen extends StatelessWidget {
                       ),
                       SizedBox(height: 18),
                       InfoCard(
-                        color: cardColor,
+                        cardColor: cardColor,
                         icon: Icons.email_outlined,
                         child: Text(
                           "info(at)health.gov.lk",
@@ -110,7 +97,7 @@ class HospitalDetailsScreen extends StatelessWidget {
                       ),
                       SizedBox(height: 18),
                       InfoCard(
-                        color: cardColor,
+                        cardColor: cardColor,
                         icon: Icons.link,
                         child: Text(
                           "Ministry of Health.",
@@ -135,11 +122,11 @@ class HospitalDetailsScreen extends StatelessWidget {
 }
 
 class InfoCard extends StatelessWidget {
-  final Color color;
+  final Color cardColor;
   final IconData icon;
   final Widget child;
 
-  const InfoCard({super.key, required this.color, required this.icon, required this.child});
+  const InfoCard({super.key, required this.cardColor, required this.icon, required this.child});
 
   @override
   Widget build(BuildContext context) {
@@ -148,7 +135,7 @@ class InfoCard extends StatelessWidget {
       padding: EdgeInsets.symmetric(vertical: 14, horizontal: 14),
       margin: EdgeInsets.only(bottom: 0),
       decoration: BoxDecoration(
-        color: color,
+        color: cardColor,
         borderRadius: BorderRadius.circular(18),
       ),
       child: Row(
