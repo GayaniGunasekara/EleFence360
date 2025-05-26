@@ -1,5 +1,3 @@
-#include <DFRobot_BMI160.h>
-
 /*!
  * @file accelGyro.ino
  * @brief I2C addr:
