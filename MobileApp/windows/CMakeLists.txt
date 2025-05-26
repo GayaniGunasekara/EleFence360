@@ -1,10 +1,14 @@
 # Project-level configuration.
 cmake_minimum_required(VERSION 3.14)
-project(contactform LANGUAGES CXX)
+
+
+
+project(capstoneproject_mobileapp LANGUAGES CXX)
 
 # The name of the executable created for the application. Change this to change
 # the on-disk name of your application.
-set(BINARY_NAME "contactform")
+set(BINARY_NAME "capstoneproject_mobileapp")
+
 
 # Explicitly opt in to modern CMake behaviors to avoid warnings with recent
 # versions of CMake.
