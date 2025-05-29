@@ -1,6 +1,3 @@
-#include <Adafruit_Sensor.h>
-
-
 /*!
  * @file accelGyro.ino
  * @brief I2C addr:
