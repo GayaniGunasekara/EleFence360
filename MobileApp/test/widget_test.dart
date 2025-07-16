@@ -9,5 +9,6 @@ void main() {
     expect(find.text('Electricity issues in the fence.'), findsOneWidget);
     expect(find.text('Fence Damages'), findsOneWidget);
     expect(find.text('Other Emergencies'), findsOneWidget);
+
   });
 }
