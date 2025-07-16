@@ -32,11 +32,11 @@ void setup(){
   
   //set and init the bmi160 i2c address
   if (bmi160.I2cInit(i2c_addr) != BMI160_OK){
-    Serial.println("init false");
+    Serial.println("init false"c:\Users\Nuhas Ahamed\Documents\Semesters\semester-4\Capstone Project\bmi160\Bmi160_Esp32\Bmi160_Esp32.ino);
     while(1);
   }
 }
-
+c:\Users\Nuhas Ahamed\Documents\Semesters\semester-4\Capstone Project\bmi160\BMI160_ESP32.ino
 void loop(){  
   int i = 0;
   int rslt;
