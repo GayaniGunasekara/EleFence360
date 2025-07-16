@@ -1,25 +1,21 @@
 import 'package:flutter/material.dart';
-import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart' as gmap;
 import 'events.dart';
 
 class EventLocationMap extends StatelessWidget {
   final Event event;
 
-  const EventLocationMap({
-    super.key,
-    required this.event,
-    required String location,
-  });
+  const EventLocationMap({super.key, required this.event});
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(15.0), 
+      padding: const EdgeInsets.all(15.0),
       child: AnimatedContainer(
         duration: const Duration(milliseconds: 300),
         height: 400,
         decoration: BoxDecoration(
-          color: Colors.white, 
+          color: Colors.white,
           borderRadius: BorderRadius.circular(24),
           border: Border.all(color: const Color(0xFF1E426B), width: 1.3),
           boxShadow: [
@@ -35,32 +31,28 @@ class EventLocationMap extends StatelessWidget {
           borderRadius: BorderRadius.circular(24),
           child: Stack(
             children: [
-              GoogleMap(
-                initialCameraPosition: CameraPosition(
-                  target: LatLng(event.latitude, event.longitude),
+              gmap.GoogleMap(
+                initialCameraPosition: gmap.CameraPosition(
+                  target: gmap.LatLng(event.latitude, event.longitude),
                   zoom: 14,
                 ),
                 markers: {
-                  Marker(
-                    markerId: const MarkerId("event_location"),
-                    position: LatLng(event.latitude, event.longitude),
-                    infoWindow: InfoWindow(title: event.name),
+                  gmap.Marker(
+                    markerId: const gmap.MarkerId("event_location"),
+                    position: gmap.LatLng(event.latitude, event.longitude),
+                    infoWindow: gmap.InfoWindow(title: event.name),
                   ),
                 },
                 zoomControlsEnabled: false,
                 myLocationButtonEnabled: false,
                 onMapCreated: (controller) {},
               ),
-              // Optional: Top info panel
               Positioned(
                 top: 12,
                 left: 12,
                 right: 12,
                 child: Container(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 12,
-                    vertical: 8,
-                  ),
+                  padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
                   decoration: BoxDecoration(
                     color: Colors.white.withOpacity(0.85),
                     borderRadius: BorderRadius.circular(16),

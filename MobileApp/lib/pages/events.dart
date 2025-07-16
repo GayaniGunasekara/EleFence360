@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'location.dart';
+import 'package:intl/intl.dart';
 
 class Event {
   final String name;
@@ -16,33 +17,39 @@ class Event {
 }
 
 class EventPage extends StatefulWidget {
-  const EventPage({super.key, required String location});
+  final String location;
+  const EventPage({super.key, required this.location});
 
   @override
   State<EventPage> createState() => _EventPageState();
 }
 
 class _EventPageState extends State<EventPage> {
-  List<Event> events = [
-    Event(
-      name: "🚧 Fence Issue Detected",
-      date: DateTime.now().subtract(const Duration(hours: 1)),
-      latitude: 6.9271,
-      longitude: 79.8612,
-    ),
-    Event(
-      name: "🐘 Elephant Detected Near Border",
-      date: DateTime.now().subtract(const Duration(days: 1, hours: 2)),
-      latitude: 7.2906,
-      longitude: 80.6337,
-    ),
-  ];
+  final Map<String, LatLng> locationMap = {
+    "Fence Area A": LatLng(7.2906, 80.6337)
+  };
 
   Event? selectedEvent;
 
   @override
+  void initState() {
+    super.initState();
+
+    final loc = widget.location;
+    final coords = locationMap[loc];
+
+    if (coords != null) {
+      selectedEvent = Event(
+        name: loc,
+        date: DateTime.now(),
+        latitude: coords.latitude,
+        longitude: coords.longitude,
+      );
+    }
+  }
+
+  @override
   Widget build(BuildContext context) {
-    events.sort((a, b) => b.date.compareTo(a.date));
     final width = MediaQuery.of(context).size.width;
 
     return Scaffold(
@@ -59,110 +66,43 @@ class _EventPageState extends State<EventPage> {
         ),
       ),
       backgroundColor: const Color(0xFF1E426B),
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              "Recent Alerts",
-              style: TextStyle(
-                fontSize: width < 600 ? 20 : 24,
-                fontWeight: FontWeight.bold,
-                color: const Color(0xFF2E5077),
+      body: selectedEvent == null
+          ? const Center(
+              child: Text(
+                "Location not found",
+                style: TextStyle(color: Colors.white, fontSize: 18),
               ),
-            ),
-            const SizedBox(height: 10),
-            Expanded(
-              child: ListView.builder(
-                itemCount: events.length,
-                itemBuilder: (context, index) {
-                  final event = events[index];
-                  return InkWell(
-                    onTap: () {
-                      setState(() {
-                        selectedEvent = event;
-                      });
-                    },
-                    borderRadius: BorderRadius.circular(16),
-                    child: Card(
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(16),
-                      ),
-                      elevation: 6,
-                      margin: const EdgeInsets.symmetric(vertical: 10),
-                      child: Container(
-                        padding: const EdgeInsets.all(16),
-                        decoration: BoxDecoration(
-                          color: Colors.white,
-                          border: Border(
-                            left: BorderSide(
-                              width: 5,
-                              
-                            ),
-                          ),
-                          borderRadius: BorderRadius.circular(16),
-                        ),
-                        child: Row(
-                          children: [
-                            const Icon(
-                              Icons.warning_amber_rounded,
-                              color: Color(0xFF4E8BD4),
-                              size: 40,
-                            ),
-                            const SizedBox(width: 16),
-                            Expanded(
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    event.name,
-                                    style: const TextStyle(
-                                      fontSize: 18,
-                                      fontWeight: FontWeight.w600,
-                                      color: Colors.black,
-                                    ),
-                                  ),
-                                  const SizedBox(height: 4),
-                                  Text(
-                                    "📅 ${event.date.toLocal()}",
-                                    style: const TextStyle(
-                                      fontSize: 14,
-                                      color: Colors.black54,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                            const Icon(
-                              Icons.chevron_right,
-                              color: Color(0xFF4DA1A9),
-                              size: 30,
-                            ),
-                          ],
-                        ),
-                      ),
+            )
+          : Padding(
+              padding: const EdgeInsets.all(16),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    "📍 Location of: ${selectedEvent!.name}",
+                    style: TextStyle(
+                      fontSize: width < 600 ? 20 : 22,
+                      fontWeight: FontWeight.w600,
+                      color: const Color(0xFF2E5077),
                     ),
-                  );
-                },
+                  ),
+                  const SizedBox(height: 12),
+                  EventLocationMap(event: selectedEvent!),
+                  const SizedBox(height: 24),
+                  Text(
+                    "🕒 Triggered at: ${DateFormat('yyyy-MM-dd hh:mm a').format(selectedEvent!.date)}",
+                    style: const TextStyle(color: Colors.white, fontSize: 16),
+                  ),
+                ],
               ),
             ),
-            if (selectedEvent != null) ...[
-              const SizedBox(height: 14),
-              Text(
-                "📍 Location of: ${selectedEvent!.name}",
-                style: TextStyle(
-                  fontSize: width < 600 ? 18 : 20,
-                  fontWeight: FontWeight.w600,
-                  color: const Color(0xFF2E5077),
-                ),
-              ),
-              const SizedBox(height: 12),
-              EventLocationMap(event: selectedEvent!, location: ''),
-            ],
-          ],
-        ),
-      ),
     );
   }
+}
+
+// Helper class for coordinates
+class LatLng {
+  final double latitude;
+  final double longitude;
+  LatLng(this.latitude, this.longitude);
 }
