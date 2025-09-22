@@ -1,9 +1,28 @@
-plugins {
-  // ...
-  // Add the dependency for the Google services Gradle plugin
-  id("com.google.gms.google-services") version "4.3.15" apply false
+<<<<<<< Updated upstream
+=======
+buildscript {
+    dependencies {
+        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:1.9.23")
+        classpath("com.google.gms:google-services:4.4.2")
+    }
 }
 
+>>>>>>> Stashed changes
+plugins {
+    id("com.android.application") version "8.7.0" apply false
+    id("org.jetbrains.kotlin.android") apply false
+    id("com.google.gms.google-services") apply false
+}
+
+<<<<<<< Updated upstream
+=======
+
+
+
+
+
+
+>>>>>>> Stashed changes
 allprojects {
     repositories {
         google()
