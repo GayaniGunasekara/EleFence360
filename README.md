@@ -1,22 +1,14 @@
 Version 1.0 of The Automated Elephant Detection and Deterrence System for Enhanced Elephant Fencing
 # 🐘 Elefence360
-### 📦 Key Features Included:
-- 🔐 **User Registration & Login**  
-  - User identity is verified using **NIC and mobile number** for uniqueness.
-  - Ensures that each user has a traceable and secure login session.
+Elefence360 is IoT based Elephant Detection & Deterrence System  developed to prevent human-elephant conflicts, protect agricultural land, and ensure elephant safety. This system uses an ESP-32 microcontroller with relevant sensors to detect elephants using ground vibrations and triggers a sound-based deterrent when activity is sensed. This is a non harmful detterent sound specially tuned for elephants hearing rang. The system is integrated with a mobile app that provides real-time alerts and data visualization. In addition to monitoring the electricity flow in the fence, it also detects any physical damages or disruptions to the fence structure, ensuring continuous status updates and enhancing overall system reliability.
 
-- 📡 **Real-Time Sensor Alerts**  
-  - Firebase Realtime Database integration for detecting events from connected sensors.
-  - Immediate push-style in-app notifications when vibration, tilt, or voltage events are triggered.
+## 🚀 Features
+🔍 Accuratly Detect Elephant Presence Using Vibration Sensors.
 
-- 📍 **Location Tracking & Mapping**  
-  - Google Maps API integration to display event locations.
-  - Location information tied to each notification for better context.
+🔊 Humance Deterrence with elephant-sensitive sound waves.
 
-- ⏱️ **Smart Notification System**  
-  - Notifications appear when a sensor detects an event and remain visible for 1 hour.
-  - If the **same location** triggers another event within that hour, the notification's countdown resets.
-  - If a **different location** detects an event, a **new notification** is generated
+📱 Provide Real-Time Alerts via Mobile Application to villages and relavant authorities.
 
-### 🚀 Purpose:
-This is the first production-ready release. It sets the foundation for a secure, real-time IoT monitoring system with user access and location-aware, time-sensitive alerting.
+⚡ Monitor Fence Status (Electrification and physical Damages).
+
+📍 Map Threat Zones to identify high-risk areas.
