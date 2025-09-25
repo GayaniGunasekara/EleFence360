@@ -1,5 +1,5 @@
 Version 1.0 of The Automated Elephant Detection and Deterrence System for Enhanced Elephant Fencing
-
+# 🐘 Elefence360
 ### 📦 Key Features Included:
 - 🔐 **User Registration & Login**  
   - User identity is verified using **NIC and mobile number** for uniqueness.
