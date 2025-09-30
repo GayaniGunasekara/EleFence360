@@ -12,3 +12,5 @@ Elefence360 is IoT based Elephant Detection & Deterrence System  developed to pr
 ⚡ Monitor Fence Status (Electrification and physical Damages).
 
 📍 Map Threat Zones to identify high-risk areas.
+
+## Phototype 
