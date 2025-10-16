@@ -1,17 +1,43 @@
-Version 1.0 of The Automated Elephant Detection and Deterrence System for Enhanced Elephant Fencing
-# 🐘 Elefence360
-Elefence360 is IoT based Elephant Detection & Deterrence System  developed to prevent human-elephant conflicts, protect agricultural land, and ensure elephant safety. This system uses an ESP-32 microcontroller with relevant sensors to detect elephants using ground vibrations and triggers a sound-based deterrent when activity is sensed. This is a non harmful detterent sound specially tuned for elephants hearing rang. The system is integrated with a mobile app that provides real-time alerts and data visualization. In addition to monitoring the electricity flow in the fence, it also detects any physical damages or disruptions to the fence structure, ensuring continuous status updates and enhancing overall system reliability.
+**🐘 EleFence360 – Smart Elephant Intrusion Detection & Alert System
+**
 
-## 🚀 Features
-🔍 Accuratly Detect Elephant Presence Using Vibration Sensors.
+EleFence360 is an intelligent IoT-based solution to detect and deter elephants, monitor elephant electric fences, and enhance awareness among people and relevant authorities. The system integrates IoT, sensor technology, and a mobile application to reduce human-elephant conflict, property damage, and casualties.
 
-🔊 Humance Deterrence with elephant-sensitive sound waves.
+🚀 Overview
+Human-elephant conflict (HEC) is a significant issue in many rural areas, often leading to crop destruction, infrastructure damage, and even loss of life for both humans and elephants.
 
-📱 Provide Real-Time Alerts via Mobile Application to villages and relavant authorities.
+EleFence360 provides a real-time monitoring and alert system that:
 
-⚡ Monitor Fence Status (Electrification and physical Damages).
+Detects elephant movements near electric fences
 
-📍 Map Threat Zones to identify high-risk areas.
+Monitors fence integrity
 
-## Prototype 
-![phototype](https://github.com/GayaniGunasekara/EleFence360/blob/main/images/phototype.jpg)
+Immediately notifies relevant authorities and villagers through a mobile app
+
+System Methodology: Detection → Deterrence → Monitoring → Real-time Data Communication
+
+Detection
+
+Ground vibrations (indicating elephant movement)
+
+Electric fence voltage status (detecting power loss or failure)
+
+Fence post tilts or movements (possible intrusion points)
+
+Deterrence
+
+Sound Deterrence: Activates non-harmful repellent sounds to repel elephants
+
+Monitoring & Real-Time Data Communication
+
+Once a threat is detected, real-time alerts are sent to stakeholders, including:
+
+Local villagers
+
+Wildlife department
+
+Electricity board
+
+Nearest railway station
+
+Each alert contains the incident-triggered time, date, and actual location (Google Maps), displaying threat areas on the app map interface.
