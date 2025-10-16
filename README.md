@@ -146,6 +146,7 @@ The ESP32 reads real-time sensor data and transmits it to **Firebase Realtime Da
   <td><img src="All_Resources_Documents_Outputs/Uploads/Prototype/Location.jpeg" width="200"/></td>
 </tr>
 <tr>
+  <td><img src="All_Resources_Documents_Outputs/Uploads/Prototype/Emergency_Contact.jpeg" width="200"/></td>
   <td><img src="All_Resources_Documents_Outputs/Uploads/Prototype/Hospital-Contact.jpeg" width="200"/></td>
   <td><img src="All_Resources_Documents_Outputs/Uploads/Prototype/Railway-Contact.jpeg" width="200"/></td>
   <td><img src="All_Resources_Documents_Outputs/Uploads/Prototype/CEB-Contact.jpeg" width="200"/></td>
