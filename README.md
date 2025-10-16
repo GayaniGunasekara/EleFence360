@@ -18,6 +18,9 @@ Human-elephant conflict (HEC) is a significant issue in many rural areas, often 
 **System Methodology:**  
 **Detection → Deterrence → Monitoring → Real-time Data Communication**
 
+![Alt text](relative/path/to/image)
+
+
 ### **Detection**
 - Ground vibrations (indicating elephant movement)  
 - Electric fence voltage status (detecting power loss or failure)  
