@@ -17,8 +17,8 @@ Human-elephant conflict (HEC) is a significant issue in many rural areas, often 
 
 **System Methodology:**  
 **Detection → Deterrence → Monitoring → Real-time Data Communication**
-[
-All Resources ,Documents, Outputs/Uploads/Methodology.jpg ](https://github.com/GayaniGunasekara/EleFence360/blob/main/All%20Resources%20%2CDocuments%2C%20Outputs/Uploads/Methodology.jpg) 
+
+https://github.com/GayaniGunasekara/EleFence360/blob/main/All%20Resources%20%2CDocuments%2C%20Outputs/Uploads/Methodology.jpg
 
 
 ### **Detection**
