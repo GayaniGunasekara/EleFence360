@@ -130,17 +130,30 @@ The ESP32 reads real-time sensor data and transmits it to **Firebase Realtime Da
 ## 📸 Prototype Demonstration
 
 ## Prototype Screenshots
-![Prototype](All_Resources_Documents_Outputs/Uploads/Prototype/IOT_Prototype.jpg)
-![Login Page](All_Resources_Documents_Outputs/Uploads/Prototype/Login.jpeg)
-![Register Page](All_Resources_Documents_Outputs/Uploads/Prototype/Register.jpeg)
-![Home Page](All_Resources_Documents_Outputs/Uploads/Prototype/HomePage.jpeg)
-![Notifications](All_Resources_Documents_Outputs/Uploads/Prototype/Notification.jpeg)
-![Notification Info](All_Resources_Documents_Outputs/Uploads/Prototype/Notification_info.jpeg)
-![Location](All_Resources_Documents_Outputs/Uploads/Prototype/Location.jpeg)
-![Police Contact](All_Resources_Documents_Outputs/Uploads/Prototype/Police-Contact.jpeg)
-![Hospital Contact](All_Resources_Documents_Outputs/Uploads/Prototype/Hospital-Contact.jpeg)
-![Railway Contact](All_Resources_Documents_Outputs/Uploads/Prototype/Railway-Contact.jpeg)
-![CEB Contact](All_Resources_Documents_Outputs/Uploads/Prototype/CEB-Contact.jpeg)
+## Prototype Screenshots
+
+<table>
+<tr>
+  <td><img src="All_Resources_Documents_Outputs/Uploads/Prototype/IOT_Prototype.jpg" width="200"/></td>
+  <td><img src="All_Resources_Documents_Outputs/Uploads/Prototype/Login.jpeg" width="200"/></td>
+  <td><img src="All_Resources_Documents_Outputs/Uploads/Prototype/Register.jpeg" width="200"/></td>
+</tr>
+<tr>
+  <td><img src="All_Resources_Documents_Outputs/Uploads/Prototype/HomePage.jpeg" width="200"/></td>
+  <td><img src="All_Resources_Documents_Outputs/Uploads/Prototype/Notification.jpeg" width="200"/></td>
+  <td><img src="All_Resources_Documents_Outputs/Uploads/Prototype/Notification_info.jpeg" width="200"/></td>
+</tr>
+<tr>
+  <td><img src="All_Resources_Documents_Outputs/Uploads/Prototype/Location.jpeg" width="200"/></td>
+  <td><img src="All_Resources_Documents_Outputs/Uploads/Prototype/Police-Contact.jpeg" width="200"/></td>
+  <td><img src="All_Resources_Documents_Outputs/Uploads/Prototype/Hospital-Contact.jpeg" width="200"/></td>
+</tr>
+<tr>
+  <td><img src="All_Resources_Documents_Outputs/Uploads/Prototype/Railway-Contact.jpeg" width="200"/></td>
+  <td><img src="All_Resources_Documents_Outputs/Uploads/Prototype/CEB-Contact.jpeg" width="200"/></td>
+  <td></td>
+</tr>
+</table>
 
 
 
