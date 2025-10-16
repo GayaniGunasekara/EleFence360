@@ -5,7 +5,7 @@
 Project Video - https://youtu.be/BJ5XGb5v0k8 
 ---
 
-## 🚀 Overview
+## 🚀System Workflow
 
 Human-elephant conflict (HEC) is a significant issue in many rural areas, often leading to crop destruction, infrastructure damage, and even loss of life for both humans and elephants.
 
@@ -29,7 +29,7 @@ Human-elephant conflict (HEC) is a significant issue in many rural areas, often 
 - **Sound Deterrence:** Activates non-harmful repellent sounds to repel elephants  
 
 ### **Monitoring & Real-Time Data Communication**
-Once a threat is detected, real-time alerts are sent to stakeholders, including:  
+Once a threat is detected, real-time alerts are sent to stakeholders via the mobile app, including:  
 
 - Local villagers  
 - Wildlife department  
@@ -51,8 +51,8 @@ Each alert contains the **incident-triggered time, date, and actual location** (
   - Relay module – monitors electric fence power status  
   - Gyro-accelerometer – detects fence post displacement  
 - **Actuators:**  
-  - Buzzer/speaker for sound deterrence  
-	- LED Bulbs indicating each incident
+  - Buzzer/speaker for sound deterrence
+  - LED Bulbs indicating each incident
 
 The ESP32 reads real-time sensor data and transmits it to **Firebase Realtime Database** via WiFi.
 
@@ -127,5 +127,6 @@ The ESP32 reads real-time sensor data and transmits it to **Firebase Realtime Da
 
 ---
 
-## 📸 System Workflow
+## 📸 Prototype Demonstration
+
 
