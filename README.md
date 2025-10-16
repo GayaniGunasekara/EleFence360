@@ -130,7 +130,7 @@ The ESP32 reads real-time sensor data and transmits it to **Firebase Realtime Da
 ## 📸 Prototype Demonstration
 
 ## Prototype Screenshots
-
+![Prototype](All_Resources_Documents_Outputs/Uploads/Prototype/IOT_Prototype.jpg)
 ![Home Page](All_Resources_Documents_Outputs/Uploads/Prototype/HomePage.jpeg)
 ![Login Page](All_Resources_Documents_Outputs/Uploads/Prototype/Login.jpeg)
 ![Register Page](All_Resources_Documents_Outputs/Uploads/Prototype/Register.jpeg)
@@ -141,7 +141,7 @@ The ESP32 reads real-time sensor data and transmits it to **Firebase Realtime Da
 ![Hospital Contact](All_Resources_Documents_Outputs/Uploads/Prototype/Hospital-Contact.jpeg)
 ![Railway Contact](All_Resources_Documents_Outputs/Uploads/Prototype/Railway-Contact.jpeg)
 ![CEB Contact](All_Resources_Documents_Outputs/Uploads/Prototype/CEB-Contact.jpeg)
-![Prototype](All_Resources_Documents_Outputs/Uploads/Prototype/IOT Prototype.jpg)
+
 
 
 
