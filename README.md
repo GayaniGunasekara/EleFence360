@@ -137,20 +137,19 @@ The ESP32 reads real-time sensor data and transmits it to **Firebase Realtime Da
   <td><img src="All_Resources_Documents_Outputs/Uploads/Prototype/IOT_Prototype.jpg" width="200"/></td>
   <td><img src="All_Resources_Documents_Outputs/Uploads/Prototype/Login.jpeg" width="200"/></td>
   <td><img src="All_Resources_Documents_Outputs/Uploads/Prototype/Register.jpeg" width="200"/></td>
+    <td><img src="All_Resources_Documents_Outputs/Uploads/Prototype/HomePage.jpeg" width="200"/></td>
 </tr>
 <tr>
-  <td><img src="All_Resources_Documents_Outputs/Uploads/Prototype/HomePage.jpeg" width="200"/></td>
+
   <td><img src="All_Resources_Documents_Outputs/Uploads/Prototype/Notification.jpeg" width="200"/></td>
   <td><img src="All_Resources_Documents_Outputs/Uploads/Prototype/Notification_info.jpeg" width="200"/></td>
-</tr>
-<tr>
   <td><img src="All_Resources_Documents_Outputs/Uploads/Prototype/Location.jpeg" width="200"/></td>
-  <td><img src="All_Resources_Documents_Outputs/Uploads/Prototype/Police-Contact.jpeg" width="200"/></td>
-  <td><img src="All_Resources_Documents_Outputs/Uploads/Prototype/Hospital-Contact.jpeg" width="200"/></td>
 </tr>
 <tr>
+  <td><img src="All_Resources_Documents_Outputs/Uploads/Prototype/Hospital-Contact.jpeg" width="200"/></td>
   <td><img src="All_Resources_Documents_Outputs/Uploads/Prototype/Railway-Contact.jpeg" width="200"/></td>
   <td><img src="All_Resources_Documents_Outputs/Uploads/Prototype/CEB-Contact.jpeg" width="200"/></td>
+  <td><img src="All_Resources_Documents_Outputs/Uploads/Prototype/Police-Contact.jpeg" width="200"/></td>
   <td></td>
 </tr>
 </table>
