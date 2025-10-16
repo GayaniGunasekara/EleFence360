@@ -1,7 +1,7 @@
 # 🐘 EleFence360 – Automated Elephant Detection, Deterrence, and Monitoring System for enhanced elephant fencing
 
 **EleFence360** is an intelligent IoT-based solution to detect and deter elephants, monitor elephant electric fences, and enhance awareness among people and relevant authorities. The system integrates **IoT, sensor technology, and a mobile application** to reduce human-elephant conflict, property damage, and Loss of lives.
-
+Project Video - https://youtu.be/BJ5XGb5v0k8 
 ---
 
 ## 🚀 Overview
