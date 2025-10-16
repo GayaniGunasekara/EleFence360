@@ -1,43 +1,128 @@
-**🐘 EleFence360 – Smart Elephant Intrusion Detection & Alert System
-**
+# 🐘 EleFence360 – Smart Elephant Intrusion Detection & Alert System
 
-EleFence360 is an intelligent IoT-based solution to detect and deter elephants, monitor elephant electric fences, and enhance awareness among people and relevant authorities. The system integrates IoT, sensor technology, and a mobile application to reduce human-elephant conflict, property damage, and casualties.
+**EleFence360** is an intelligent IoT-based solution to detect and deter elephants, monitor elephant electric fences, and enhance awareness among people and relevant authorities. The system integrates **IoT, sensor technology, and a mobile application** to reduce human-elephant conflict, property damage, and casualties.
 
-🚀 Overview
+---
+
+## 🚀 Overview
+
 Human-elephant conflict (HEC) is a significant issue in many rural areas, often leading to crop destruction, infrastructure damage, and even loss of life for both humans and elephants.
 
-EleFence360 provides a real-time monitoring and alert system that:
+**EleFence360** provides a **real-time monitoring and alert system** that:  
 
-Detects elephant movements near electric fences
+- Detects elephant movements near electric fences  
+- Monitors fence integrity  
+- Immediately notifies relevant authorities and villagers through a mobile app  
 
-Monitors fence integrity
+**System Methodology:**  
+**Detection → Deterrence → Monitoring → Real-time Data Communication**
 
-Immediately notifies relevant authorities and villagers through a mobile app
+### **Detection**
+- Ground vibrations (indicating elephant movement)  
+- Electric fence voltage status (detecting power loss or failure)  
+- Fence post tilts or movements (possible intrusion points)  
 
-System Methodology: Detection → Deterrence → Monitoring → Real-time Data Communication
+### **Deterrence**
+- **Sound Deterrence:** Activates non-harmful repellent sounds to repel elephants  
 
-Detection
+### **Monitoring & Real-Time Data Communication**
+Once a threat is detected, real-time alerts are sent to stakeholders, including:  
 
-Ground vibrations (indicating elephant movement)
+- Local villagers  
+- Wildlife department  
+- Electricity board  
+- Nearest railway station  
 
-Electric fence voltage status (detecting power loss or failure)
+Each alert contains the **incident-triggered time, date, and actual location** (Google Maps), displaying threat areas on the app map interface.
 
-Fence post tilts or movements (possible intrusion points)
+---
 
-Deterrence
+## ⚙️ System Architecture
 
-Sound Deterrence: Activates non-harmful repellent sounds to repel elephants
+**EleFence360** consists of **three integrated layers**:
 
-Monitoring & Real-Time Data Communication
+### 1. Hardware Layer (IoT Unit)
+- **Microcontroller:** ESP32 (with integrated WiFi module)  
+- **Sensors Used:**  
+  - Vibration sensors – detect ground vibrations caused by elephant movement  
+  - Relay module – monitors electric fence power status  
+  - Gyro-accelerometer – detects fence post displacement  
+- **Actuators:**  
+  - Buzzer/speaker for sound deterrence  
+	- LED Bulbs indicating each incident
 
-Once a threat is detected, real-time alerts are sent to stakeholders, including:
+The ESP32 reads real-time sensor data and transmits it to **Firebase Realtime Database** via WiFi.
 
-Local villagers
+### 2. Database Layer
+**Firebase Realtime Database** is used for:  
+- Storing live sensor readings  
+- Triggering alerts to the mobile app  
+- Synchronizing data across devices  
+- Storing static location data  
 
-Wildlife department
+### 3. Mobile Application (User Interface)
+- **Built using:** Flutter  
+- **Key Pages:**  
+  - Login Page  
+  - Registration Page  
+  - Home Page  
+  - Notifications Page  
+  - Notification Details  
+  - Live Location Page  
+  - Contact Details Page  
 
-Electricity board
+---
 
-Nearest railway station
+## 🧠 Core Functionalities
 
-Each alert contains the incident-triggered time, date, and actual location (Google Maps), displaying threat areas on the app map interface.
+| Functionality           | Description |
+|-------------------------|-------------|
+| Vibration Detection     | Detects elephant footstep vibrations through sensors. |
+| Fence Power Monitoring  | Ensures electric fence is active; detects voltage drop or power loss. |
+| Fence Damage Detection  | Identifies physical fence post tampering or tilting. |
+| Sound Deterrence        | Activates non-harmful sound to repel elephants. |
+| Real-Time Alerts        | Sends instant notifications to app users and authorities. |
+| Location Tracking       | Displays threat areas on the map in the app interface. |
+
+---
+
+## 🛠️ Technologies Used
+
+| Component                | Technology |
+|--------------------------|------------|
+| Microcontroller          | ESP32 |
+| Connectivity             | ESP32 integrated WiFi Module |
+| Backend / Database       | Firebase Realtime Database |
+| Frontend (Mobile App)    | Flutter |
+| Programming Languages    | C++ (Arduino), Dart (Flutter) |
+| Version Control          | Git & GitHub |
+
+---
+
+## 🌍 Stakeholders & Impact
+
+**Stakeholders:**  
+- Village communities  
+- Wildlife conservation authorities  
+- Electricity board  
+- Railway departments  
+
+**Impact:**  
+- Reduces human-elephant conflicts  
+- Prevents property and crop damage  
+- Enhances rapid response and coordination among authorities  
+- Promotes safer coexistence between humans and wildlife  
+
+---
+
+## 🏆 Achievements
+
+- 🥇 **Merit Award – NBQSA 2025** (Tertiary Student Project – Technology Category)  
+  Awarded by **BCS, The Chartered Institute for IT**
+
+---
+
+## 📸 System Workflow
+
+*(Add a system architecture image or workflow diagram here)*
+
