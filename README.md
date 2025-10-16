@@ -1,6 +1,6 @@
-# 🐘 EleFence360 – Smart Elephant Intrusion Detection & Alert System
+# 🐘 EleFence360 – Automated Elephant Detection, Deterrence, and Monitoring System for enhanced elephant fencing
 
-**EleFence360** is an intelligent IoT-based solution to detect and deter elephants, monitor elephant electric fences, and enhance awareness among people and relevant authorities. The system integrates **IoT, sensor technology, and a mobile application** to reduce human-elephant conflict, property damage, and casualties.
+**EleFence360** is an intelligent IoT-based solution to detect and deter elephants, monitor elephant electric fences, and enhance awareness among people and relevant authorities. The system integrates **IoT, sensor technology, and a mobile application** to reduce human-elephant conflict, property damage, and Loss of lives.
 
 ---
 
@@ -78,7 +78,7 @@ The ESP32 reads real-time sensor data and transmits it to **Firebase Realtime Da
 | Functionality           | Description |
 |-------------------------|-------------|
 | Vibration Detection     | Detects elephant footstep vibrations through sensors. |
-| Fence Power Monitoring  | Ensures electric fence is active; detects voltage drop or power loss. |
+| Fence Power Monitoring  | Ensures the electric fence is active; detects voltage drop or power loss. |
 | Fence Damage Detection  | Identifies physical fence post tampering or tilting. |
 | Sound Deterrence        | Activates non-harmful sound to repel elephants. |
 | Real-Time Alerts        | Sends instant notifications to app users and authorities. |
@@ -108,7 +108,9 @@ The ESP32 reads real-time sensor data and transmits it to **Firebase Realtime Da
 - Railway departments  
 
 **Impact:**  
-- Reduces human-elephant conflicts  
+- Reduces human-elephant conflicts
+- Preserve elephant population.
+- -Protect Human lives.
 - Prevents property and crop damage  
 - Enhances rapid response and coordination among authorities  
 - Promotes safer coexistence between humans and wildlife  
@@ -123,6 +125,4 @@ The ESP32 reads real-time sensor data and transmits it to **Firebase Realtime Da
 ---
 
 ## 📸 System Workflow
-
-*(Add a system architecture image or workflow diagram here)*
 
